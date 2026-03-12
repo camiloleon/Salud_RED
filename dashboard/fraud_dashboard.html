@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Analytics Terminal - Sistema de Detección y Análisis</title>
+    <link rel="stylesheet" href="fraud_styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <!-- Leaflet for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body class="fraud-theme">
+    <div class="terminal-container">
+        <!-- Terminal Header -->
+        <header class="terminal-header">
+            <div class="terminal-logo">
+                <div class="logo-icon">⚠️ FRAUD ALERT</div>
+                <div class="logo-text">
+                    <h1>SISTEMA DE ANÁLISIS DE FRAUDE</h1>
+                    <span class="terminal-subtitle">Fraud Detection & Analytics Terminal</span>
+                </div>
+            </div>
+            <div class="terminal-metrics">
+                <div class="live-indicator">
+                    <span class="pulse-red"></span>
+                    <span>MONITORING</span>
+                </div>
+                <div class="terminal-time" id="terminalClock">--:--:--</div>
+                <div class="system-health alert">
+                    <span class="health-icon">⚠</span>
+                    <span id="systemHealth">FRAUD DETECTED</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Simplified Header Info -->
+        <div class="info-bar">
+            <div class="info-item">
+                <span class="info-icon">📊</span>
+                <span>Período: Feb 10 - Mar 9, 2026</span>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">📍</span>
+                <span>Región: Suroccidente Colombia</span>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">⚡</span>
+                <span>Actualización: <span id="lastUpdate">--:--</span></span>
+            </div>
+        </div>
+
+        <!-- Alert Ticker -->
+        <div class="alert-ticker">
+            <div class="ticker-item">
+                <div class="ticker-label">CASOS FRAUDE</div>
+                <div class="ticker-value alert" id="totalFraude">--</div>
+                <div class="ticker-change alert">
+                    <span>⬆</span>
+                    <span class="change-percent" id="fraudeChange">--%</span>
+                </div>
+            </div>
+            <span class="ticker-separator">|</span>
+            <div class="ticker-item">
+                <div class="ticker-label">CANALES AFECTADOS</div>
+                <div class="ticker-value" id="canalesTotal">--</div>
+            </div>
+            <span class="ticker-separator">|</span>
+            <div class="ticker-item">
+                <div class="ticker-label">CIUDADES EN RIESGO</div>
+                <div class="ticker-value warning" id="zonasRiesgo">--</div>
+            </div>
+            <span class="ticker-separator">|</span>
+            <div class="ticker-item">
+                <div class="ticker-label">ASESORES INVOLUCRADOS</div>
+                <div class="ticker-value" id="asesoresTotal">--</div>
+            </div>
+            <span class="ticker-separator">|</span>
+            <div class="ticker-item">
+                <div class="ticker-label">TASA DE DETECCIÓN</div>
+                <div class="ticker-value positive" id="detectionRate">--%</div>
+            </div>
+            <span class="ticker-separator">|</span>
+            <div class="ticker-item">
+                <div class="ticker-label">ÚLTIMA ACTUALIZACIÓN</div>
+                <div class="ticker-value" id="lastUpdate">--:--</div>
+            </div>
+        </div>
+
+        <!-- Main Trading Grid -->
+        <div class="trading-grid">
+            <!-- Matriz 2x2: Distribución por Canal -->
+            <div class="chart-panel main-chart" style="grid-column: span 2;">
+                <div class="panel-header">
+                    <h3>📊 DISTRIBUCIÓN DE FRAUDE POR CANAL (4 VISTAS)</h3>
+                </div>
+                <div class="chart-body" style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 15px; padding: 15px; grid-template-rows: 250px 250px;">
+                    <div style="display: flex; flex-direction: column; height: 100%;">
+                        <div style="text-align: center; color: #d1d5db; font-size: 11px; font-weight: 600; margin-bottom: 8px;">GRÁFICO DE BARRAS</div>
+                        <div style="flex: 1; position: relative; min-height: 0;">
+                            <canvas id="canalChartBar"></canvas>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; height: 100%;">
+                        <div style="text-align: center; color: #d1d5db; font-size: 11px; font-weight: 600; margin-bottom: 8px;">GRÁFICO DE DONA - CANAL PRINCIPAL</div>
+                        <div style="flex: 1; position: relative; min-height: 0;">
+                            <canvas id="canalChartDoughnut"></canvas>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; height: 100%;">
+                        <div style="text-align: center; color: #d1d5db; font-size: 11px; font-weight: 600; margin-bottom: 8px;">EVOLUCIÓN TEMPORAL</div>
+                        <div style="flex: 1; position: relative; min-height: 0;">
+                            <canvas id="canalChartLine"></canvas>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; height: 100%;">
+                        <div style="text-align: center; color: #d1d5db; font-size: 11px; font-weight: 600; margin-bottom: 8px;">CANAL SECUNDARIO</div>
+                        <div style="flex: 1; position: relative; min-height: 0;">
+                            <canvas id="canal2Chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-footer">
+                    <div class="chart-stat">
+                        <div class="stat-label">CANAL MÁS AFECTADO</div>
+                        <div class="stat-value" id="topCanal">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">CASOS</div>
+                        <div class="stat-value" id="topCanalCasos">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">% DEL TOTAL</div>
+                        <div class="stat-value" id="topCanalPct">--%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Asesores List -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h3>👤 TOP 10 ASESORES CON MÁS CASOS</h3>
+                </div>
+                <div class="chart-body">
+                    <div class="top-list" id="asesorList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ciudades Chart -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h3>🏙️ DISTRIBUCIÓN POR CIUDAD</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="zonaChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Tipo de Red Chart -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h3>📡 TIPO DE RED</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="razonChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Top Ciudades Chart -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h3>🏢 TOP CIUDADES</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="regionalChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Mapa Geográfico -->
+            <div class="chart-panel wide">
+                <div class="panel-header">
+                    <h3>🗺️ GEORREFERENCIACIÓN - MAPA DE FRAUDES</h3>
+                    <div class="chart-controls">
+                        <select class="terminal-select small" id="geoFilterCanal">
+                            <option value="all">TODOS LOS CANALES</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-body" style="height: 500px;">
+                    <div id="geoHeatmap" style="height: 100%; width: 100%; border-radius: 4px;"></div>
+                </div>
+                <div class="chart-footer">
+                    <div class="chart-stat">
+                        <div class="stat-label">PUNTOS GEORREFERENCIADOS</div>
+                        <div class="stat-value" id="geoTotal">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">ZONA DE MAYOR CONCENTRACIÓN</div>
+                        <div class="stat-value" id="geoHotspot">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analisis por Aliado -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h3>🏢 ANÁLISIS POR COMPAÑÍA</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="aliadoChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Analisis por Tecnico (Top 10) - IZQUIERDA ARRIBA -->
+            <div class="chart-panel" style="grid-column: 1 / 2; min-width: 0;">
+                <div class="panel-header">
+                    <h3>👨‍🔧 TOP 10 TÉCNICOS</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="tecnicoChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Canal vs Ciudad Matrix - DERECHA (2 FILAS) -->
+            <div class="chart-panel featured-chart" style="grid-column: 2 / -1; grid-row: span 2; min-width: 0;">
+                <div class="panel-header">
+                    <h3>🔥 MATRIZ DE RIESGO: CANAL × CIUDAD</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="matrixChart" style="height: 750px;"></canvas>
+                </div>
+            </div>
+
+            <!-- Análisis por Nodos - IZQUIERDA ABAJO -->
+            <div class="chart-panel" style="grid-column: 1 / 2; min-width: 0;">
+                <div class="panel-header">
+                    <h3>🏢 ANÁLISIS POR NODOS (Top 20)</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="nodoChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminal Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-left">
+                <span>Fraud Analytics Terminal v2.0</span>
+                <span class="separator">|</span>
+                <span>Sistema de Detección de Fraude</span>
+                <span class="separator">|</span>
+                <span>Latency: <span class="latency-value" id="latency">--</span>ms</span>
+            </div>
+            <div class="footer-right">
+                <span>FPS: <span class="fps-value" id="fps">--</span></span>
+                <span class="separator">|</span>
+                <span>© 2026 Salud_RED</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="fraud_charts.js"></script>
+</body>
+</html>
