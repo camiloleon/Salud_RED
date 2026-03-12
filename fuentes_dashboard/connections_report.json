@@ -1,0 +1,99 @@
+{
+  "workbook": "d:\\Hotmail\\OneDrive\\GIT\\Salud_RED\\fuentes_dashboard\\Base KPI O&M _ TRF Fijo - DATOS.xlsx",
+  "exists": true,
+  "connections": [
+    {
+      "id": "1",
+      "name": "pbiazure://api.powerbi.com 29eb73b9-2e7d-4d75-89cd-d87f9431a37f Model",
+      "type": "5",
+      "refreshOnLoad": "1",
+      "background": "1",
+      "provider": "MSOLAP",
+      "data_source": "pbiazure://api.powerbi.com",
+      "integrated_security": "ClaimsToken",
+      "initial_catalog": "sobe_wowvirtualserver-29eb73b9-2e7d-4d75-89cd-d87f9431a37f",
+      "identity_provider": "https://login.microsoftonline.com/common, https://analysis.windows.net/powerbi/api, 929d0ec0-7a41-4b1e-bc7c-b754a28bddcc",
+      "command_preview": "DEFINE\n\tVAR __DS0FilterTable = \n\t\tTREATAS( CALENDAR(\n            DATE(2024, 8, 1),\n            DATE(2025, 12, 31)\n        ), 'Calidad Fija'[M_FECHA_MES])\n\n\tVAR __DS0FilterTable2 = \n\t\tTREATAS({\"REGION 3\"}, 'Calidad Fija'[REGION_CONVERGENCIA])\n\n\tVAR __DS0FilterTable3 = \n\t\tTREATAS({\"Activo\"}, 'Calidad Fija'[ESTADO_NODO])\n\n\tVAR __DS0FilterTable4 = \n\t\tTREATAS({1}, 'Calidad Fija'[FiltroFecha])\n\n\tVAR __DS0Core = \n\t\tSUMMARIZECOLUMNS(\n\t\t\t'Calidad Fija'[ZONA_OWNER],\n\t\t\t'Calidad Fija'[NODO],\n\t\t\t'Calidad Fija'[ZONA_JEFE],\n                                                'Calidad Fija'[M_FECHA_MES],\n\t\t\t'Calidad Fija'[REGION_CONVERGENCIA],\n\t\t\t__DS0FilterTable,\n\t\t\t__DS0FilterTable2,\n\t\t\t__DS0FilterTable3,\n\t\t\t__DS0FilterTable4,\n\t\t\t\"Ind_Calidad_Red_Fijo_Mes\", 'DAX Calidad Fija'[Ind Calidad Red Fijo Mes],\n\t\t\t\"v_Porc_Dispo_real\", 'DAX Calidad Fija'[_Porc Dispo real],\n\t\t\t\"DW_Nodo\", 'DAX Calidad Fija'[DW_Nodo],\n\t\t\t\"UP_Nodo\", 'DAX Calidad Fija'[UP_Nodo],\n\t\t\t\"GGB_Nodo\", 'DAX Calidad Fija'[GGB_Nodo],\n\t\t\t\"BH_Nodo\", 'DAX Calidad Fija'[BH_Nodo],\n\t\t\t\"CMFN_Nodo\", 'DAX Calidad Fija'[CMFN_Nodo],\n\t\t\t\"Ruido_Nodo\", 'DAX Calidad Fija'[Ruido_Nodo],\n                                              \"CAT_QoE\",Max('Calidad Fi"
+    },
+    {
+      "id": "2",
+      "name": "pbiazure://api.powerbi.com 9e55180c-7076-4e7f-9366-7be9a841b803 Model",
+      "type": "5",
+      "refreshOnLoad": "1",
+      "background": "1",
+      "provider": "MSOLAP",
+      "data_source": "pbiazure://api.powerbi.com",
+      "integrated_security": "ClaimsToken",
+      "initial_catalog": "sobe_wowvirtualserver-9e55180c-7076-4e7f-9366-7be9a841b803",
+      "identity_provider": "https://login.microsoftonline.com/common, https://analysis.windows.net/powerbi/api, 929d0ec0-7a41-4b1e-bc7c-b754a28bddcc",
+      "command_preview": "DEFINE\n\tVAR __DS0FilterTable = \n\t\tTREATAS({\"R3 OCCIDENTE\"}, 'trf_consolidado'[regional])\n\n\tVAR __DS0Core = \n\t\tSUMMARIZECOLUMNS(\n\t\t\t'trf_consolidado'[fecha],\n\t\t\t'trf_consolidado'[regional],\n\t\t\t'trf_consolidado'[ticket],\n\t\t\t'trf_consolidado'[ticket_proveedor],\n\t\t\t'trf_consolidado'[prioridad_inc],\n\t\t\t'trf_consolidado'[ot],\n\t\t\t'trf_consolidado'[ruta_completa],\n\t\t\t'trf_consolidado'[id_zone_owner],\n\t\t\t'trf_consolidado'[zone_owner],\n\t\t\t'trf_consolidado'[id_jefe_zona],\n\t\t\t'trf_consolidado'[jefe_zona],\n\t\t\t'trf_consolidado'[ciudad],\n\t\t\t'trf_consolidado'[dane],\n\t\t\t'trf_consolidado'[tipo_zona],\n\t\t\t'trf_consolidado'[causa_inc],\n\t\t\t'trf_consolidado'[problema_inc],\n\t\t\t'trf_consolidado'[solucion_inc],\n\t\t\t'trf_consolidado'[tiempo_detec_alarma],\n\t\t\t'trf_consolidado'[fech_ini_incid],\n\t\t\t'trf_consolidado'[fech_ini_ot],\n\t\t\t'trf_consolidado'[fech_ini_tsk],\n\t\t\t'trf_consolidado'[tiempo_clareo_alarma],\n\t\t\t'trf_consolidado'[fech_fin_tsk],\n\t\t\t'trf_consolidado'[fech_fin_ot],\n\t\t\t'trf_consolidado'[fech_fin_incid],\n\t\t\t'trf_consolidado'[fech_fin_averia],\n\t\t\t'trf_consolidado'[fecha_inicio_afectacion],\n\t\t\t'trf_consolidado'[bandera_inicio],\n\t\t\t'trf_consolidado'[bandera_fin],\n\t\t\t'trf_consolidado'[fecha_fin_afectacion"
+    }
+  ],
+  "query_tables": [
+    {
+      "file": "xl/queryTables/queryTable1.xml",
+      "name": "QueryTable1",
+      "connectionId": "1",
+      "field_count": 20,
+      "field_samples": [
+        "Calidad Fija[ZONA_OWNER]",
+        "Calidad Fija[NODO]",
+        "Calidad Fija[ZONA_JEFE]",
+        "Calidad Fija[REGION_CONVERGENCIA]",
+        "[Ind_Calidad_Red_Fijo_Mes]",
+        "[v_Porc_Dispo_real]",
+        "[DW_Nodo]",
+        "[UP_Nodo]",
+        "[GGB_Nodo]",
+        "[BH_Nodo]",
+        "[CMFN_Nodo]",
+        "[Ruido_Nodo]",
+        "Calidad Fija[M_FECHA_MES]",
+        "[CAT_QoE]",
+        "[SumSCORE_QOE]",
+        "[SumMAX_DIAS_CONS_INC_QOE]",
+        "[Rango_QoE]",
+        "[Prioridad Nodo]",
+        "[Rango ICR Fijo]",
+        "[Total_Hogares]"
+      ]
+    },
+    {
+      "file": "xl/queryTables/queryTable2.xml",
+      "name": "QueryTable1",
+      "connectionId": "2",
+      "field_count": 55,
+      "field_samples": [
+        "trf_consolidado[fecha]",
+        "trf_consolidado[regional]",
+        "trf_consolidado[ticket]",
+        "trf_consolidado[ticket_proveedor]",
+        "trf_consolidado[prioridad_inc]",
+        "trf_consolidado[ot]",
+        "trf_consolidado[ruta_completa]",
+        "trf_consolidado[id_zone_owner]",
+        "trf_consolidado[zone_owner]",
+        "trf_consolidado[id_jefe_zona]",
+        "trf_consolidado[jefe_zona]",
+        "trf_consolidado[ciudad]",
+        "trf_consolidado[dane]",
+        "trf_consolidado[tipo_zona]",
+        "trf_consolidado[causa_inc]",
+        "trf_consolidado[problema_inc]",
+        "trf_consolidado[solucion_inc]",
+        "trf_consolidado[tiempo_detec_alarma]",
+        "trf_consolidado[fech_ini_incid]",
+        "trf_consolidado[fech_ini_ot]",
+        "trf_consolidado[fech_ini_tsk]",
+        "trf_consolidado[tiempo_clareo_alarma]",
+        "trf_consolidado[fech_fin_tsk]",
+        "trf_consolidado[fech_fin_ot]",
+        "trf_consolidado[fech_fin_incid]"
+      ]
+    }
+  ],
+  "risks": [
+    "Uses ClaimsToken (interactive auth), fragile for unattended desktop refresh",
+    "Power BI cloud endpoint detected (Azure/Entra auth lifecycle applies)"
+  ]
+}

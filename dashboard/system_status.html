@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado del Sistema - Automatización</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>⚙️ Estado del Sistema de Automatización</h1>
+            </div>
+            <div class="header-info">
+                <button class="btn-back" onclick="window.location.href='index.html'">← Volver al 360</button>
+            </div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn" onclick="window.location.href='index.html'">Vista General</button>
+            <button class="tab-btn" onclick="window.location.href='dashboard_om.html'">O&M Detallado</button>
+            <button class="tab-btn" onclick="window.location.href='dashboard_trf.html'">TRF Fijo</button>
+            <button class="tab-btn active">Estado del Sistema</button>
+        </nav>
+
+        <!-- System Status Overview -->
+        <section class="system-overview">
+            <div class="status-card large">
+                <h2>🟢 Sistema Operativo</h2>
+                <p>Todos los componentes funcionando correctamente</p>
+                <div class="status-time">Última verificación: Hace 2 minutos</div>
+            </div>
+        </section>
+
+        <!-- Infrastructure Components -->
+        <section class="kpi-grid">
+            <div class="kpi-card component-card">
+                <div class="component-header">
+                    <span class="component-icon">📊</span>
+                    <span class="status-indicator green"></span>
+                </div>
+                <h3>Power BI Refresh</h3>
+                <div class="component-detail">
+                    <span>Última ejecución:</span>
+                    <strong>19:00 (Exitoso)</strong>
+                </div>
+                <div class="component-detail">
+                    <span>Próxima ejecución:</span>
+                    <strong>19:30 (10 min)</strong>
+                </div>
+                <div class="component-detail">
+                    <span>Tasa de éxito:</span>
+                    <strong>98.5%</strong>
+                </div>
+            </div>
+
+            <div class="kpi-card component-card">
+                <div class="component-header">
+                    <span class="component-icon">🗄️</span>
+                    <span class="status-indicator green"></span>
+                </div>
+                <h3>MySQL Database</h3>
+                <div class="component-detail">
+                    <span>Host:</span>
+                    <strong>10.108.34.32:33063</strong>
+                </div>
+                <div class="component-detail">
+                    <span>Estado conexión:</span>
+                    <strong>Conectado</strong>
+                </div>
+                <div class="component-detail">
+                    <span>Última sincronización:</span>
+                    <strong>19:02 (135,438 registros)</strong>
+                </div>
+            </div>
+
+            <div class="kpi-card component-card">
+                <div class="component-header">
+                    <span class="component-icon">🔐</span>
+                    <span class="status-indicator yellow"></span>
+                </div>
+                <h3>VPN Connection</h3>
+                <div class="component-detail">
+                    <span>Estado:</span>
+                    <strong>Conectado (CLARO IT 2FA)</strong>
+                </div>
+                <div class="component-detail">
+                    <span>Gateway:</span>
+                    <strong>190.144.240.101:443</strong>
+                </div>
+                <div class="component-detail">
+                    <span>Tiempo conexión:</span>
+                    <strong>2h 15min</strong>
+                </div>
+            </div>
+
+            <div class="kpi-card component-card">
+                <div class="component-header">
+                    <span class="component-icon">📅</span>
+                    <span class="status-indicator green"></span>
+                </div>
+                <h3>Task Scheduler</h3>
+                <div class="component-detail">
+                    <span>Nombre tarea:</span>
+                    <strong>OTC_Excel_Refresh_30min</strong>
+                </div>
+                <div class="component-detail">
+                    <span>Frecuencia:</span>
+                    <strong>Cada 30 minutos</strong>
+                </div>
+                <div class="component-detail">
+                    <span>Estado:</span>
+                    <strong class="text-warning">⏸️ PAUSADO (Manual)</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sync State -->
+        <section class="system-section">
+            <h3>🔄 Estado de Sincronización</h3>
+            <div class="sync-state-card">
+                <div class="sync-state-item">
+                    <span class="sync-label">Modo Actual:</span>
+                    <span class="sync-value"><strong>Bootstrap Completado</strong></span>
+                </div>
+                <div class="sync-state-item">
+                    <span class="sync-label">Próximo modo:</span>
+                    <span class="sync-value"><strong>Incremental (últimos 2 días)</strong></span>
+                </div>
+                <div class="sync-state-item">
+                    <span class="sync-label">Bootstrap ejecutado:</span>
+                    <span class="sync-value">✅ Sí (2026-03-07 19:00 UTC)</span>
+                </div>
+                <div class="sync-state-item">
+                    <span class="sync-label">Archivo Estado:</span>
+                    <span class="sync-value"><code>data/sync_state.json</code></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Execution History -->
+        <section class="system-section">
+            <h3>📜 Historial de Ejecuciones (Últimas 24h)</h3>
+            <div class="execution-timeline">
+                <div class="timeline-item success">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">19:02:34</div>
+                        <div class="timeline-title">✅ MySQL Sync - Bootstrap</div>
+                        <div class="timeline-details">
+                            <span>O_M: 46,682 registros</span> | 
+                            <span>Tabla2: 24 registros</span> | 
+                            <span>TRF_Fijo: 88,732 registros</span>
+                        </div>
+                        <div class="timeline-meta">Total: 135,438 registros cargados en modo current</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item success">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">19:00:12</div>
+                        <div class="timeline-title">✅ Excel Refresh - Power BI</div>
+                        <div class="timeline-details">
+                            Archivo: <code>Base_KPI_OM_TRF_Fijo_DATOS.xlsx</code>
+                        </div>
+                        <div class="timeline-meta">Conexión ClaimsToken autenticada | Duración: 2m 15s</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item success">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">18:58:45</div>
+                        <div class="timeline-title">✅ Query Window Update</div>
+                        <div class="timeline-details">
+                            Ventana de fecha actualizada: 2023-01-01 a 2026-03-11
+                        </div>
+                        <div class="timeline-meta">Modo: Bootstrap | Patrón: DATE() con encoding _x000d__x000a_</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item success">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">18:30:05</div>
+                        <div class="timeline-title">✅ Excel Refresh - Power BI</div>
+                        <div class="timeline-details">
+                            Ejecución periódica exitosa
+                        </div>
+                        <div class="timeline-meta">Duración: 1m 52s</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item warning">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">18:00:23</div>
+                        <div class="timeline-title">⚠️ Excel Refresh - Retry</div>
+                        <div class="timeline-details">
+                            Error COM 0x800AC472 (Call rejected by callee)
+                        </div>
+                        <div class="timeline-meta">Recuperado después de 3 reintentos | Duración total: 2m 45s</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item success">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">17:30:18</div>
+                        <div class="timeline-title">✅ MySQL Sync - Incremental</div>
+                        <div class="timeline-details">
+                            0 registros nuevos detectados (sistema actualizado)
+                        </div>
+                        <div class="timeline-meta">Ventana: 2026-03-09 a 2026-03-11</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Database Tables Status -->
+        <section class="system-section">
+            <h3>🗄️ Estado de Tablas MySQL</h3>
+            <div class="table-wrapper">
+                <table class="data-table system-table">
+                    <thead>
+                        <tr>
+                            <th>Tabla</th>
+                            <th>Tipo</th>
+                            <th>Registros</th>
+                            <th>Última Actualización</th>
+                            <th>Tamaño</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>raw_kpi_o_m_fijo_o_m</code></td>
+                            <td><span class="badge badge-raw">RAW</span></td>
+                            <td>93,364</td>
+                            <td>2026-03-07 19:02</td>
+                            <td>24.5 MB</td>
+                            <td><span class="status-badge status-ok">Activa</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>cur_kpi_o_m_fijo_o_m</code></td>
+                            <td><span class="badge badge-current">CURRENT</span></td>
+                            <td>46,682</td>
+                            <td>2026-03-07 19:02</td>
+                            <td>12.3 MB</td>
+                            <td><span class="status-badge status-ok">Activa</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>raw_hoja2_tabla2</code></td>
+                            <td><span class="badge badge-raw">RAW</span></td>
+                            <td>48</td>
+                            <td>2026-03-07 19:02</td>
+                            <td>12 KB</td>
+                            <td><span class="status-badge status-ok">Activa</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>cur_hoja2_tabla2</code></td>
+                            <td><span class="badge badge-current">CURRENT</span></td>
+                            <td>24</td>
+                            <td>2026-03-07 19:02</td>
+                            <td>6 KB</td>
+                            <td><span class="status-badge status-ok">Activa</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>raw_trf_fijo_trf_fijo</code></td>
+                            <td><span class="badge badge-raw">RAW</span></td>
+                            <td>88,732</td>
+                            <td>2026-03-07 19:02</td>
+                            <td>31.2 MB</td>
+                            <td><span class="status-badge status-ok">Activa</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>cur_trf_fijo_trf_fijo</code></td>
+                            <td><span class="badge badge-current">CURRENT</span></td>
+                            <td>88,732</td>
+                            <td>2026-03-07 19:02</td>
+                            <td>31.2 MB</td>
+                            <td><span class="status-badge status-ok">Activa</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-note">
+                <strong>Nota:</strong> Tablas RAW contienen historial completo con duplicados para auditoría. 
+                Tablas CURRENT contienen snapshot actual deduplicado por row_hash.
+            </div>
+        </section>
+
+        <!-- Scripts and Configuration -->
+        <section class="system-section">
+            <h3>📜 Scripts de Automatización</h3>
+            <div class="scripts-grid">
+                <div class="script-card">
+                    <div class="script-header">
+                        <span class="script-icon">🔄</span>
+                        <h4>run_refresh_30min.ps1</h4>
+                    </div>
+                    <div class="script-body">
+                        <p><strong>Función:</strong> Orquestador principal del ciclo completo</p>
+                        <p><strong>Acciones:</strong></p>
+                        <ul>
+                            <li>Lee estado de sync_state.json</li>
+                            <li>Determina modo (bootstrap/incremental)</li>
+                            <li>Llama a update_excel_query_window.py</li>
+                            <li>Ejecuta Refresh-ExcelPowerBI.ps1</li>
+                            <li>Ejecuta sync_excel_to_mysql.py</li>
+                            <li>Actualiza estado al finalizar</li>
+                        </ul>
+                        <p><strong>Ubicación:</strong> <code>scripts/run_refresh_30min.ps1</code></p>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-header">
+                        <span class="script-icon">📊</span>
+                        <h4>Refresh-ExcelPowerBI.ps1</h4>
+                    </div>
+                    <div class="script-body">
+                        <p><strong>Función:</strong> Refresco de Excel con Power BI</p>
+                        <p><strong>Características:</strong></p>
+                        <ul>
+                            <li>Manejo de ClaimsToken authentication</li>
+                            <li>Retry logic para error 0x800AC472 (60 intentos)</li>
+                            <li>Modo UseRefreshOnLoadOnly para estabilidad</li>
+                            <li>Cierre limpio de procesos Excel</li>
+                        </ul>
+                        <p><strong>Ubicación:</strong> <code>scripts/Refresh-ExcelPowerBI.ps1</code></p>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-header">
+                        <span class="script-icon">🗄️</span>
+                        <h4>sync_excel_to_mysql.py</h4>
+                    </div>
+                    <div class="script-body">
+                        <p><strong>Función:</strong> ETL de Excel a MySQL</p>
+                        <p><strong>Modos:</strong></p>
+                        <ul>
+                            <li><strong>Bootstrap:</strong> Carga completa desde 2023</li>
+                            <li><strong>Incremental:</strong> Solo últimos 2 días</li>
+                        </ul>
+                        <p><strong>Estrategia:</strong></p>
+                        <ul>
+                            <li>Batch inserts de 1000 registros</li>
+                            <li>Deduplicación por row_hash en tablas current</li>
+                            <li>Detección automática de columnas de fecha</li>
+                        </ul>
+                        <p><strong>Ubicación:</strong> <code>scripts/sync_excel_to_mysql.py</code></p>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <div class="script-header">
+                        <span class="script-icon">📝</span>
+                        <h4>update_excel_query_window.py</h4>
+                    </div>
+                    <div class="script-body">
+                        <p><strong>Función:</strong> Modifica ventana de fechas en query DAX</p>
+                        <p><strong>Procesamiento:</strong></p>
+                        <ul>
+                            <li>Extrae xl/connections.xml del ZIP</li>
+                            <li>Modifica patrón DATE() con regex</li>
+                            <li>Soporta encoding _x000d__x000a_</li>
+                            <li>Crea backup antes de modificar</li>
+                        </ul>
+                        <p><strong>Ubicación:</strong> <code>scripts/update_excel_query_window.py</code></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Control Panel -->
+        <section class="control-panel">
+            <h3>🎛️ Panel de Control</h3>
+            <div class="control-buttons">
+                <button class="btn-control btn-primary" onclick="enableScheduler()">
+                    ▶️ Reanudar Automatización
+                </button>
+                <button class="btn-control btn-warning" onclick="disableScheduler()">
+                    ⏸️ Pausar Sistema
+                </button>
+                <button class="btn-control btn-secondary" onclick="runManual()">
+                    🔄 Ejecutar Manual Ahora
+                </button>
+                <button class="btn-control btn-info" onclick="viewLogs()">
+                    📄 Ver Logs
+                </button>
+                <button class="btn-control btn-success" onclick="testConnection()">
+                    🔌 Test Conexión MySQL
+                </button>
+                <button class="btn-control btn-danger" onclick="resetBootstrap()">
+                    🔄 Reset Bootstrap
+                </button>
+            </div>
+        </section>
+
+        <!-- Configuration Display -->
+        <section class="system-section">
+            <h3>⚙️ Configuración Actual</h3>
+            <div class="config-display">
+                <div class="config-group">
+                    <h4>🗄️ MySQL Configuration</h4>
+                    <div class="config-item">
+                        <span class="config-label">Host:</span>
+                        <code>10.108.34.32</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Port:</span>
+                        <code>33063</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">User:</span>
+                        <code>o&m</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Database:</span>
+                        <code>o&m</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Config File:</span>
+                        <code>.env.mysql</code>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <h4>📊 Power BI Configuration</h4>
+                    <div class="config-item">
+                        <span class="config-label">Connection:</span>
+                        <code>pbiazure://api.powerbi.com</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Provider:</span>
+                        <code>MSOLAP</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Auth Method:</span>
+                        <code>ClaimsToken (OAuth)</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Workbook:</span>
+                        <code>Base_KPI_OM_TRF_Fijo_DATOS.xlsx</code>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <h4>📅 Task Scheduler Configuration</h4>
+                    <div class="config-item">
+                        <span class="config-label">Task Name:</span>
+                        <code>OTC_Excel_Refresh_30min</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Schedule:</span>
+                        <code>Every 30 minutes</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Run Mode:</span>
+                        <code>Interactive (for ClaimsToken)</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Command:</span>
+                        <code>powershell -NoProfile -ExecutionPolicy Bypass -File run_refresh_30min.ps1</code>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <h4>🗂️ File Paths</h4>
+                    <div class="config-item">
+                        <span class="config-label">Workspace:</span>
+                        <code>D:\Hotmail\OneDrive\GIT\Salud_RED</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Scripts:</span>
+                        <code>scripts/</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Data:</span>
+                        <code>data/</code>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Logs:</span>
+                        <code>logs/</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commands Reference -->
+        <section class="system-section">
+            <h3>💻 Comandos de Referencia Rápida</h3>
+            <div class="commands-reference">
+                <div class="command-group">
+                    <h4>Reanudar Automatización:</h4>
+                    <pre><code>schtasks /Change /TN "OTC_Excel_Refresh_30min" /Enable
+schtasks /Run /TN "OTC_Excel_Refresh_30min"</code></pre>
+                </div>
+
+                <div class="command-group">
+                    <h4>Pausar Automatización:</h4>
+                    <pre><code>schtasks /Change /TN "OTC_Excel_Refresh_30min" /Disable</code></pre>
+                </div>
+
+                <div class="command-group">
+                    <h4>Ejecución Manual:</h4>
+                    <pre><code>powershell -NoProfile -ExecutionPolicy Bypass -File "D:\Hotmail\OneDrive\GIT\Salud_RED\scripts\run_refresh_30min.ps1"</code></pre>
+                </div>
+
+                <div class="command-group">
+                    <h4>Ver Estado Tarea:</h4>
+                    <pre><code>schtasks /Query /TN "OTC_Excel_Refresh_30min" /V /FO LIST</code></pre>
+                </div>
+
+                <div class="command-group">
+                    <h4>Verificar Logs:</h4>
+                    <pre><code>Get-Content "logs\excel_refresh_$(Get-Date -f yyyyMMdd).log" -Tail 50</code></pre>
+                </div>
+
+                <div class="command-group">
+                    <h4>Test Conexión MySQL:</h4>
+                    <pre><code>python scripts\sync_excel_to_mysql.py --test-connection</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 CLARO IT - Sistema de Automatización Power BI → MySQL | Documentación: AUTOMATIZACION_POWERBI_360.md</p>
+        </footer>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script>
+        // System-specific functions
+        function enableScheduler() {
+            if (confirm('¿Reanudar la automatización cada 30 minutos?')) {
+                alert('Comando: schtasks /Change /TN "OTC_Excel_Refresh_30min" /Enable');
+                // In production, this would call an API endpoint
+            }
+        }
+
+        function disableScheduler() {
+            if (confirm('¿Pausar el sistema de automatización?')) {
+                alert('Comando: schtasks /Change /TN "OTC_Excel_Refresh_30min" /Disable');
+            }
+        }
+
+        function runManual() {
+            if (confirm('¿Ejecutar ciclo completo manualmente ahora?')) {
+                alert('Iniciando ejecución manual...');
+                // Call run_refresh_30min.ps1
+            }
+        }
+
+        function viewLogs() {
+            window.open('logs/excel_refresh_' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '.log', '_blank');
+        }
+
+        function testConnection() {
+            alert('Probando conexión a MySQL 10.108.34.32:33063...');
+            // Call test connection script
+        }
+
+        function resetBootstrap() {
+            if (confirm('¿ADVERTENCIA: Esto reiniciará el estado y volverá a ejecutar bootstrap completo en la próxima ejecución. ¿Continuar?')) {
+                alert('Editando data/sync_state.json → bootstrap_done: false');
+            }
+        }
+    </script>
+</body>
+</html>

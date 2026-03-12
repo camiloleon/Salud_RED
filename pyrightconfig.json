@@ -1,0 +1,13 @@
+{
+  "include": [
+    "app.py",
+    "src",
+    "tests",
+    "scripts"
+  ],
+  "extraPaths": [
+    "src"
+  ],
+  "pythonVersion": "3.14",
+  "typeCheckingMode": "basic"
+}

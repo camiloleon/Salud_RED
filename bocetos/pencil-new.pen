@@ -1,0 +1,340 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 1400,
+      "fill": "#1a1b1e",
+      "layout": "vertical",
+      "gap": 20,
+      "padding": 40,
+      "children": [
+        {
+          "type": "text",
+          "id": "NWv0y",
+          "fill": "#00ff41",
+          "content": "DASHBOARD FRAUDES - Layout Actual",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": "bold"
+        },
+        {
+          "type": "text",
+          "id": "r5PWx",
+          "fill": "#10b981",
+          "content": "(Dibuja/anota encima lo que quieres cambiar)",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "BBVAX",
+          "fill": "#00ff41",
+          "width": "fill_container",
+          "height": 2
+        },
+        {
+          "type": "frame",
+          "id": "mw9d4",
+          "name": "row1",
+          "width": "fill_container",
+          "children": [
+            {
+              "type": "frame",
+              "id": "P3wzT",
+              "name": "mapa",
+              "width": "fill_container",
+              "height": 180,
+              "fill": "#2d1b69",
+              "cornerRadius": 6,
+              "stroke": {
+                "thickness": 2,
+                "fill": "#8b5cf6"
+              },
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 18,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eJpE8",
+                  "fill": "#ffffff",
+                  "content": "🗺️ MAPA (74 fraudes)",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "bold"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Hk6f5",
+          "name": "row2",
+          "width": "fill_container",
+          "gap": 15,
+          "children": [
+            {
+              "type": "frame",
+              "id": "FqsUJ",
+              "name": "zona",
+              "width": "fill_container",
+              "height": 150,
+              "fill": "#1e3a5f",
+              "cornerRadius": 6,
+              "stroke": {
+                "thickness": 2,
+                "fill": "#3b82f6"
+              },
+              "layout": "vertical",
+              "gap": 5,
+              "padding": 15,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rc38m",
+                  "fill": "#ffffff",
+                  "content": "📊 ZONA",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "pNGbj",
+              "name": "razon",
+              "width": "fill_container",
+              "height": 150,
+              "fill": "#1e3a5f",
+              "cornerRadius": 6,
+              "stroke": {
+                "thickness": 2,
+                "fill": "#3b82f6"
+              },
+              "layout": "vertical",
+              "gap": 5,
+              "padding": 15,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FLqE4",
+                  "fill": "#ffffff",
+                  "content": "📋 RAZÓN",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "anI21",
+              "name": "regional",
+              "width": "fill_container",
+              "height": 150,
+              "fill": "#1e3a5f",
+              "cornerRadius": 6,
+              "stroke": {
+                "thickness": 2,
+                "fill": "#3b82f6"
+              },
+              "layout": "vertical",
+              "gap": 5,
+              "padding": 15,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "kLqBm",
+                  "fill": "#ffffff",
+                  "content": "🌎 REGIONAL",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "TOHSo",
+              "name": "aliado",
+              "width": "fill_container",
+              "height": 150,
+              "fill": "#1e3a5f",
+              "cornerRadius": 6,
+              "stroke": {
+                "thickness": 2,
+                "fill": "#3b82f6"
+              },
+              "layout": "vertical",
+              "gap": 5,
+              "padding": 15,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Mop9B",
+                  "fill": "#ffffff",
+                  "content": "🏢 ALIADO",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "bold"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "utTvL",
+          "name": "row3",
+          "width": "fill_container",
+          "gap": 15,
+          "children": [
+            {
+              "type": "frame",
+              "id": "6NIgr",
+              "name": "tecnicos",
+              "width": "fill_container",
+              "height": 220,
+              "fill": "#2c5530",
+              "cornerRadius": 6,
+              "stroke": {
+                "thickness": 2,
+                "fill": "#10b981"
+              },
+              "layout": "vertical",
+              "gap": 5,
+              "padding": 15,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "O5O74",
+                  "fill": "#ffffff",
+                  "content": "👨‍🔧 TOP TÉCNICOS",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "BnQnu",
+              "name": "cuartiles",
+              "width": "fill_container",
+              "height": 220,
+              "fill": "#5c3a1e",
+              "cornerRadius": 6,
+              "stroke": {
+                "thickness": 2,
+                "fill": "#f59e0b"
+              },
+              "layout": "vertical",
+              "gap": 5,
+              "padding": 15,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "B9yYE",
+                  "fill": "#ffffff",
+                  "content": "📈 CUARTILES",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "9Xpcf",
+              "name": "nodos",
+              "width": "fill_container",
+              "height": 220,
+              "fill": "#2c5530",
+              "cornerRadius": 6,
+              "stroke": {
+                "thickness": 2,
+                "fill": "#10b981"
+              },
+              "layout": "vertical",
+              "gap": 5,
+              "padding": 15,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "YYHW3",
+                  "fill": "#ffffff",
+                  "content": "🏢 TOP NODOS",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "bold"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "GQR76",
+          "name": "row4",
+          "width": "fill_container",
+          "children": [
+            {
+              "type": "frame",
+              "id": "qJF2E",
+              "name": "matriz",
+              "width": "fill_container",
+              "height": 300,
+              "fill": "#5f1e1e",
+              "cornerRadius": 6,
+              "stroke": {
+                "thickness": 3,
+                "fill": "#dc2626"
+              },
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "w4L45",
+                  "fill": "#ffffff",
+                  "content": "🔥 MATRIZ DE RIESGO: CANAL × CIUDAD",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "7rBCs",
+                  "fill": "#d0d0d0",
+                  "content": "(Horizontal, ciudades en Y-axis, leyenda derecha)",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "dcGe8",
+          "fill": "#fbbf24",
+          "content": "✏️ Usa las herramientas de dibujo para reorganizar o añadir notas",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "normal"
+        }
+      ]
+    }
+  ]
+}

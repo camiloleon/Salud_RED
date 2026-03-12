@@ -1,0 +1,2 @@
+fecha,pais,regional,zona,aliado,responsable,sitio,impacto_clientes,sr_movil,sr_fijo,kpi_crt,kpi_icr,kpi_ruido,kpi_trf_fijo,kpi_dispon,kpi_q30,kpi_tr,kpi_1ag,kpi_efect_xp
+2026-03-01,COLOMBIA,R3,CALI,ALIADO_A,RESP_CAL_1,CAL_A_1_01,1200,0.88,0.82,0.06,0.92,0.90,0.86,0.95,0.89,0.90,0.87,0.74

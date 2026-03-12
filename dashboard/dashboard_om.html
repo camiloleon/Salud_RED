@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard O&M Detallado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>🔧 Dashboard O&M Detallado</h1>
+            </div>
+            <div class="header-info">
+                <button class="btn-back" onclick="window.location.href='index.html'">← Volver al 360</button>
+            </div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn" onclick="window.location.href='index.html'">Vista General</button>
+            <button class="tab-btn active">O&M Detallado</button>
+            <button class="tab-btn" onclick="window.location.href='dashboard_trf.html'">TRF Fijo</button>
+            <button class="tab-btn" onclick="window.location.href='system_status.html'">Estado del Sistema</button>
+        </nav>
+
+        <!-- O&M Specific KPIs -->
+        <section class="kpi-grid">
+            <div class="kpi-card highlight">
+                <div class="kpi-icon">📊</div>
+                <div class="kpi-content">
+                    <h3>Total Registros O&M</h3>
+                    <div class="kpi-value">46,682</div>
+                    <div class="kpi-subtext">Desde 2023 hasta hoy</div>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon">🆕</div>
+                <div class="kpi-content">
+                    <h3>Nuevos (2 días)</h3>
+                    <div class="kpi-value">124</div>
+                    <div class="kpi-change positive">+15% vs período anterior</div>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon">⚠️</div>
+                <div class="kpi-content">
+                    <h3>Incidencias Críticas</h3>
+                    <div class="kpi-value">87</div>
+                    <div class="kpi-change negative">+12 vs ayer</div>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon">✅</div>
+                <div class="kpi-content">
+                    <h3>Resueltas Hoy</h3>
+                    <div class="kpi-value">245</div>
+                    <div class="kpi-change positive">+23% vs ayer</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Date Filters -->
+        <section class="filters">
+            <div class="filter-group">
+                <label>📅 Fecha Inicio:</label>
+                <input type="date" id="startDate" value="2026-03-09">
+            </div>
+            <div class="filter-group">
+                <label>📅 Fecha Fin:</label>
+                <input type="date" id="endDate" value="2026-03-11">
+            </div>
+            <div class="filter-group">
+                <label>🏢 Zona:</label>
+                <select id="zoneFilter">
+                    <option value="all">Todas las zonas</option>
+                    <option value="lima">Lima</option>
+                    <option value="callao">Callao</option>
+                    <option value="provincias">Provincias</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>⚡ Prioridad:</label>
+                <select id="priorityFilter">
+                    <option value="all">Todas</option>
+                    <option value="high">Alta</option>
+                    <option value="medium">Media</option>
+                    <option value="low">Baja</option>
+                </select>
+            </div>
+            <button class="btn-primary" onclick="applyFilters()">Aplicar Filtros</button>
+        </section>
+
+        <!-- Detailed Charts -->
+        <section class="charts-grid">
+            <div class="chart-container full-width">
+                <h3>📈 Evolución de Incidencias O&M por Día</h3>
+                <div class="chart-placeholder">
+                    <canvas id="omTrendChart" width="800" height="250"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>🎯 Incidencias por Estado</h3>
+                <div class="chart-placeholder">
+                    <div class="stat-list">
+                        <div class="stat-item">
+                            <span class="stat-label">Nueva</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 15%; background: #3498db;"></div>
+                            </div>
+                            <span class="stat-value">456 (15%)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">En Proceso</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 35%; background: #f39c12;"></div>
+                            </div>
+                            <span class="stat-value">1,067 (35%)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Pendiente Cliente</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 20%; background: #9b59b6;"></div>
+                            </div>
+                            <span class="stat-value">610 (20%)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Resuelta</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 28%; background: #2ecc71;"></div>
+                            </div>
+                            <span class="stat-value">854 (28%)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Cerrada</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 2%; background: #95a5a6;"></div>
+                            </div>
+                            <span class="stat-value">61 (2%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>📍 Top 10 Zonas Geográficas</h3>
+                <div class="chart-placeholder">
+                    <canvas id="omZoneChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>⏱️ Tiempo Promedio de Resolución</h3>
+                <div class="chart-placeholder">
+                    <div class="avg-time-display">
+                        <div class="time-card">
+                            <span class="time-label">Crítica</span>
+                            <span class="time-value">2.3h</span>
+                        </div>
+                        <div class="time-card">
+                            <span class="time-label">Alta</span>
+                            <span class="time-value">4.7h</span>
+                        </div>
+                        <div class="time-card">
+                            <span class="time-label">Media</span>
+                            <span class="time-value">8.2h</span>
+                        </div>
+                        <div class="time-card">
+                            <span class="time-label">Baja</span>
+                            <span class="time-value">16.5h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>👥 Asignación por Técnico</h3>
+                <div class="chart-placeholder">
+                    <canvas id="technicianChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Table -->
+        <section class="data-table-section">
+            <h3>📋 Detalle de Incidencias O&M</h3>
+            <div class="table-controls">
+                <input type="text" id="searchOMTable" placeholder="🔍 Buscar por ID, zona, tipo..." onkeyup="filterTable()">
+                <button class="btn-secondary" onclick="exportOMData()">📥 Exportar CSV</button>
+                <button class="btn-secondary" onclick="printReport()">🖨️ Imprimir</button>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table detailed-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAll"></th>
+                            <th>ID Incidencia</th>
+                            <th>Fecha Inicio</th>
+                            <th>Tipo Servicio</th>
+                            <th>Zona</th>
+                            <th>Distrito</th>
+                            <th>Estado</th>
+                            <th>Prioridad</th>
+                            <th>Técnico Asignado</th>
+                            <th>SLA</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>#OM-2026-001234</td>
+                            <td>2026-03-11 08:30</td>
+                            <td>Calidad Fija</td>
+                            <td>Lima</td>
+                            <td>San Isidro</td>
+                            <td><span class="status-badge status-pending">En Proceso</span></td>
+                            <td><span class="priority high">Alta</span></td>
+                            <td>Carlos Méndez</td>
+                            <td><span class="sla-ok">OK (2.5h)</span></td>
+                            <td>
+                                <button class="btn-sm" onclick="viewDetails('OM-001234')">👁️</button>
+                                <button class="btn-sm" onclick="editIncident('OM-001234')">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>#OM-2026-001235</td>
+                            <td>2026-03-11 07:15</td>
+                            <td>Mantenimiento</td>
+                            <td>Callao</td>
+                            <td>Bellavista</td>
+                            <td><span class="status-badge status-resolved">Resuelta</span></td>
+                            <td><span class="priority medium">Media</span></td>
+                            <td>Ana Ríos</td>
+                            <td><span class="sla-ok">OK (4.2h)</span></td>
+                            <td>
+                                <button class="btn-sm" onclick="viewDetails('OM-001235')">👁️</button>
+                                <button class="btn-sm" onclick="editIncident('OM-001235')">✏️</button>
+                            </td>
+                        </tr>
+                        <tr class="row-alert">
+                            <td><input type="checkbox"></td>
+                            <td>#OM-2026-001236</td>
+                            <td>2026-03-10 23:45</td>
+                            <td>Servicio Crítico</td>
+                            <td>Lima</td>
+                            <td>Miraflores</td>
+                            <td><span class="status-badge status-new">Nueva</span></td>
+                            <td><span class="priority critical">Crítica</span></td>
+                            <td>Sin asignar</td>
+                            <td><span class="sla-warning">⚠️ Venciendo (0.5h)</span></td>
+                            <td>
+                                <button class="btn-sm btn-urgent" onclick="viewDetails('OM-001236')">👁️</button>
+                                <button class="btn-sm btn-urgent" onclick="assignUrgent('OM-001236')">⚡ Asignar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>#OM-2026-001237</td>
+                            <td>2026-03-10 18:20</td>
+                            <td>Soporte Técnico</td>
+                            <td>Lima</td>
+                            <td>Surco</td>
+                            <td><span class="status-badge status-pending">En Proceso</span></td>
+                            <td><span class="priority low">Baja</span></td>
+                            <td>Luis Torres</td>
+                            <td><span class="sla-ok">OK (14.3h)</span></td>
+                            <td>
+                                <button class="btn-sm" onclick="viewDetails('OM-001237')">👁️</button>
+                                <button class="btn-sm" onclick="editIncident('OM-001237')">✏️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button class="btn-sm">« Anterior</button>
+                <span class="page-info">Mostrando 1-10 de 46,682 registros</span>
+                <button class="btn-sm">Siguiente »</button>
+            </div>
+        </section>
+
+        <!-- Alert Section -->
+        <section class="alert-section">
+            <div class="alert alert-warning">
+                <strong>⚠️ Alerta:</strong> Hay 3 incidencias críticas sin asignar que requieren atención inmediata.
+                <button class="btn-sm btn-alert">Ver Ahora</button>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 CLARO IT - O&M Dashboard | Tabla MySQL: cur_kpi_o_m_fijo_o_m (46,682 registros)</p>
+        </footer>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

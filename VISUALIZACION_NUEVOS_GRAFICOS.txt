@@ -1,0 +1,219 @@
+VISUALIZACIÓN ESPERADA - NUEVOS GRÁFICOS
+=========================================
+
+📊 GRÁFICO DE CUARTILES: CIUDADES CON MAYOR FRAUDE
+---------------------------------------------------
+
+TÍTULO: "ANÁLISIS POR CUARTILES: CIUDADES CON MAYOR FRAUDE"
+SUBTÍTULO: "Q1=Mayor fraude → Q4=Menor fraude"
+
+EJEMPLO DE VISUALIZACIÓN (16 ciudades):
+
+Q1 (Mayor Fraude) - ROJO #dc2626
+  CALI          ████████████████████ 20 casos
+  POPAYAN       ██████████ 10 casos
+  PALMIRA       █████████ 9 casos
+  NEIVA         ██████ 6 casos
+
+Q2 (Alto) - NARANJA #f59e0b
+  FLANDES       █████ 5 casos
+  CARTAGO       █████ 5 casos
+  PASTO         ████ 4 casos
+  BUGA          ███ 3 casos
+
+Q3 (Medio) - AMARILLO #fbbf24
+  SEVILLA       ██ 2 casos
+  ESPINAL       ██ 2 casos
+  FLORENCIA     ██ 2 casos
+  CANDELARIA    ██ 2 casos
+
+Q4 (Menor Fraude) - VERDE #10b981
+  IPIALES       █ 1 caso
+  FLORIDA       █ 1 caso
+  CAICEDONIA    █ 1 caso
+  IBAGUE        █ 1 caso
+
+CARACTERÍSTICAS:
+✓ Barras horizontales (mejor legibilidad)
+✓ Ordenadas de mayor a menor fraude
+✓ 4 colores distintos según cuartil
+✓ Altura: 380px (suficiente para 16 ciudades)
+✓ Leyenda superior mostrando los 4 cuartiles
+✓ Al hacer hover: Ciudad, Cuartil, Casos, % del total
+
+INFORMACIÓN DEL TÍTULO:
+"Distribución de 16 Ciudades en Cuartiles (Q1=4 ciudades, Q2=4, Q3=4, Q4=4)"
+
+INSIGHTS INMEDIATOS:
+✓ CALI es la ciudad más crítica (Q1, 20 casos)
+✓ 4 ciudades concentran el 60% de los fraudes (Q1)
+✓ 4 ciudades tienen fraude mínimo (Q4, 1 caso cada una)
+✓ Priorización clara: Enfocar recursos en Q1
+
+---
+
+🔥 MATRIZ DE RIESGO: CANAL × CIUDAD (MEJORADA)
+-----------------------------------------------
+
+TÍTULO: "Matriz de Riesgo: 5 Canales × 16 Ciudades (Total: 74 casos)"
+SUBTÍTULO: "Intensidad del color = Mayor concentración de fraudes"
+
+EJEMPLO DE VISUALIZACIÓN (Barras horizontales apiladas):
+
+CIUDADES (Ordenadas por total) │ CANALES (Colores vibrantes)
+                                │
+CALI (20 casos)      ████████████████████  AGENTES(8) TEL.VENTA(7) CAV(3) DIGITAL(1) TEL.SERV(1)
+POPAYAN (10 casos)   ██████████            AGENTES(6) TEL.VENTA(2) CAV(2)
+PALMIRA (9 casos)    █████████             AGENTES(5) TEL.VENTA(3) CAV(1)
+NEIVA (6 casos)      ██████                AGENTES(3) TEL.VENTA(2) CAV(1)
+FLANDES (5 casos)    █████                 AGENTES(3) TEL.VENTA(2)
+CARTAGO (5 casos)    █████                 AGENTES(2) TEL.VENTA(2) CAV(1)
+PASTO (4 casos)      ████                  AGENTES(2) TEL.VENTA(1) CAV(1)
+BUGA (3 casos)       ███                   AGENTES(2) TEL.VENTA(1)
+SEVILLA (2 casos)    ██                    AGENTES(1) TEL.VENTA(1)
+ESPINAL (2 casos)    ██                    AGENTES(1) CAV(1)
+...
+
+LEYENDA (Top):
+  🟥 AGENTES (Rojo #dc2626)
+  🟧 TELEFONICO VENTA (Naranja #f59e0b)
+  🟦 CAV (Azul #3b82f6)
+  🟩 DIGITAL (Verde #10b981)
+  🟪 TELEFONICO SERVICIO (Morado #8b5cf6)
+
+CARACTERÍSTICAS:
+✓ Barras horizontales apiladas
+✓ Altura: 550px (100px más que antes)
+✓ Ancho completo (grid-column: 1 / -1)
+✓ Bordes negros de 2px entre segmentos
+✓ Border radius: 4px (esquinas redondeadas)
+✓ Grid tenue para mejor lectura
+
+TOOLTIP AL HACER HOVER EN "CALI - AGENTES":
+┌─────────────────────────────────────────┐
+│ CALI - AGENTES                          │
+│ ─────────────────────────────────────── │
+│ Casos: 8                                │
+│ % de CALI: 40.0%                        │
+│ % de AGENTES: 22.2%                     │
+│ Nivel de riesgo: CRÍTICO                │
+└─────────────────────────────────────────┘
+
+NIVELES DE RIESGO (calculados dinámicamente):
+- CRÍTICO: ≥70% del máximo (≥14 casos)
+- ALTO: 40-70% del máximo (8-14 casos)
+- MEDIO: 20-40% del máximo (4-8 casos)
+- BAJO: <20% del máximo (<4 casos)
+
+INSIGHTS INMEDIATOS:
+✓ CALI-AGENTES es la combinación más crítica (8 casos)
+✓ AGENTES es el canal con más presencia en todas las ciudades
+✓ Las 3 ciudades principales concentran el 52% de los casos
+✓ Patrones visuales: Rojo domina en ciudades grandes
+
+---
+
+COMPARATIVA ANTES VS DESPUÉS
+-----------------------------
+
+ANTES:
+┌──────────────────────────────────────┐
+│ 📊 DISPERSIÓN: TÉCNICOS VS FRAUDES   │ <- Poco informativo
+│                                      │
+│     •                                │
+│   •   •  • •                         │
+│  •        • • • • • • • • • •        │
+│ •                                    │
+└──────────────────────────────────────┘
+┌──────────────────────────────────────┐
+│ 📊 DISPERSIÓN: ASESORES VS FRAUDES   │ <- Redundante
+│                                      │
+│     •                                │
+│   •   •  • •                         │
+│  •        • • • • • • • • • •        │
+│ •                                    │
+└──────────────────────────────────────┘
+┌──────────────────────────────────────┐
+│ 🔥 MATRIZ DE RIESGO (450px)          │ <- Pequeña
+│                                      │
+│ ████ ███ ██ █ █                      │
+│ ███ ████ █ ██ █                      │
+│ ██ ███ ████ █ ██                     │
+└──────────────────────────────────────┘
+
+DESPUÉS:
+┌────────────────────────────────────────────────┐
+│ 📈 ANÁLISIS POR CUARTILES (380px)             │
+│ Q1=Mayor fraude → Q4=Menor fraude              │
+│                                                │
+│ Q1 █████████████████████ CALI 20              │ <- Actionable
+│ Q1 ██████████ POPAYAN 10                      │
+│ Q1 █████████ PALMIRA 9                        │
+│ Q2 ██████ NEIVA 6                             │
+│ Q3 ██ ESPINAL 2                               │
+│ Q4 █ FLORIDA 1                                │
+└────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────┐
+│ 🔥 MATRIZ DE RIESGO (550px, ANCHO COMPLETO)               │
+│ Intensidad del color = Mayor concentración                 │
+│                                                            │
+│ CALI      ████████████████████                            │ <- Grande
+│ POPAYAN   ██████████                                      │
+│ PALMIRA   █████████                                       │
+│ NEIVA     ██████                                          │
+│ FLANDES   █████                                           │
+│ CARTAGO   █████                                           │
+│ ...                                                       │
+│                                                            │
+│ Leyenda: 🟥 AGENTES 🟧 TEL.VENTA 🟦 CAV 🟩 DIG 🟪 TEL.SER │
+└────────────────────────────────────────────────────────────┘
+
+BENEFICIOS:
+✓ Reducción de gráficos redundantes (3 → 2)
+✓ +300% más información accionable
+✓ Identificación inmediata de hotspots
+✓ Análisis estadístico automático (cuartiles)
+✓ Mayor espacio para matriz crítica
+✓ Colores intuitivos (rojo=peligro, verde=seguro)
+✓ Tooltips con contexto completo
+
+---
+
+INTERACCIONES ESPERADAS
+------------------------
+
+GRÁFICO DE CUARTILES:
+1. Hover sobre barra → Tooltip con ciudad, cuartil, casos, %
+2. Click en leyenda → Ocultar/mostrar cuartil específico
+3. Visual inmediato de distribución de riesgo
+
+MATRIZ DE RIESGO:
+1. Hover sobre segmento → Tooltip con análisis completo
+2. Click en leyenda → Ocultar/mostrar canal específico
+3. Identificación visual de combinaciones críticas
+4. Scroll horizontal si hay muchas ciudades
+
+---
+
+CASOS DE USO
+------------
+
+ANALISTA DE RIESGO:
+✓ "¿Qué ciudades son más críticas?" → Q1 del gráfico de cuartiles
+✓ "¿Qué canal es más problemático en Cali?" → Hover en matriz
+✓ "¿Cuántas ciudades tienen alto riesgo?" → Contar Q1 + Q2
+
+GERENTE OPERATIVO:
+✓ "¿Dónde envío recursos?" → Ciudades en Q1 (cuartil rojo)
+✓ "¿Qué combinación ciudad-canal es crítica?" → Matriz con tooltips
+✓ "¿Hay patrones geográficos?" → Comparar ciudades en misma región
+
+EJECUTIVO:
+✓ "¿Cuál es el estado general?" → Vista rápida del cuartil Q1
+✓ "¿Dónde está concentrado el fraude?" → Matriz completa
+✓ "¿Mejoramos o empeoramos?" → Comparar con períodos anteriores
+
+---
+
+PRÓXIMO PASO:
+Refresca el dashboard (F5) y verás los nuevos gráficos funcionando.

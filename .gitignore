@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+ENV/
+
+# Environment variables
+.env
+.env.local
+.env.mysql
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+temp_*
+
+# Data files (opcional - descomenta si no quieres subir datos)
+# data/
+# fuentes_dashboard/
+
+# Testing
+.pytest_cache/

@@ -1,0 +1,28 @@
+{
+  "director": {
+    "password_hash": "cf7b81093102330847e3e4f66619b980ab5b856d1ceb4e47cd4af637e9e26527",
+    "role": "director",
+    "scope": {}
+  },
+  "jefe_cali": {
+    "password_hash": "cf7b81093102330847e3e4f66619b980ab5b856d1ceb4e47cd4af637e9e26527",
+    "role": "jefe",
+    "scope": {
+      "zona": [
+        "CALI"
+      ]
+    }
+  },
+  "owner_tol": {
+    "password_hash": "cf7b81093102330847e3e4f66619b980ab5b856d1ceb4e47cd4af637e9e26527",
+    "role": "owner",
+    "scope": {
+      "aliado": [
+        "ALIADO_A"
+      ],
+      "responsable": [
+        "RESP_TOL_1"
+      ]
+    }
+  }
+}

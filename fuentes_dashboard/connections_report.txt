@@ -1,0 +1,21 @@
+Workbook: d:\Hotmail\OneDrive\GIT\Salud_RED\fuentes_dashboard\Base KPI O&M _ TRF Fijo - DATOS.xlsx
+Connections: 2
+Query tables: 2
+
+- Connection 1: pbiazure://api.powerbi.com 29eb73b9-2e7d-4d75-89cd-d87f9431a37f Model
+  Provider: MSOLAP
+  DataSource: pbiazure://api.powerbi.com
+  IntegratedSecurity: ClaimsToken
+  InitialCatalog: sobe_wowvirtualserver-29eb73b9-2e7d-4d75-89cd-d87f9431a37f
+  RefreshOnLoad: 1
+
+- Connection 2: pbiazure://api.powerbi.com 9e55180c-7076-4e7f-9366-7be9a841b803 Model
+  Provider: MSOLAP
+  DataSource: pbiazure://api.powerbi.com
+  IntegratedSecurity: ClaimsToken
+  InitialCatalog: sobe_wowvirtualserver-9e55180c-7076-4e7f-9366-7be9a841b803
+  RefreshOnLoad: 1
+
+Risks:
+- Uses ClaimsToken (interactive auth), fragile for unattended desktop refresh
+- Power BI cloud endpoint detected (Azure/Entra auth lifecycle applies)

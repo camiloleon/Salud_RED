@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard TRF Fijo Detallado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>📡 Dashboard TRF Fijo Detallado</h1>
+            </div>
+            <div class="header-info">
+                <button class="btn-back" onclick="window.location.href='index.html'">← Volver al 360</button>
+            </div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn" onclick="window.location.href='index.html'">Vista General</button>
+            <button class="tab-btn" onclick="window.location.href='dashboard_om.html'">O&M Detallado</button>
+            <button class="tab-btn active">TRF Fijo</button>
+            <button class="tab-btn" onclick="window.location.href='system_status.html'">Estado del Sistema</button>
+        </nav>
+
+        <!-- TRF Specific KPIs -->
+        <section class="kpi-grid">
+            <div class="kpi-card highlight">
+                <div class="kpi-icon">📊</div>
+                <div class="kpi-content">
+                    <h3>Total Registros TRF</h3>
+                    <div class="kpi-value">88,732</div>
+                    <div class="kpi-subtext">Desde 2023 hasta hoy</div>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon">🆕</div>
+                <div class="kpi-content">
+                    <h3>Nuevos (2 días)</h3>
+                    <div class="kpi-value">87</div>
+                    <div class="kpi-change positive">+8% vs período anterior</div>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon">📶</div>
+                <div class="kpi-content">
+                    <h3>Congestión Promedio</h3>
+                    <div class="kpi-value">68.3%</div>
+                    <div class="kpi-change negative">+2.1% vs ayer</div>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon">🔴</div>
+                <div class="kpi-content">
+                    <h3>Nodos Críticos</h3>
+                    <div class="kpi-value">23</div>
+                    <div class="kpi-change negative">+5 vs ayer</div>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon">💾</div>
+                <div class="kpi-content">
+                    <h3>Uso Promedio Ancho Banda</h3>
+                    <div class="kpi-value">4.2 Gbps</div>
+                    <div class="kpi-change positive">+12% vs semana anterior</div>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon">⚡</div>
+                <div class="kpi-content">
+                    <h3>Latencia Promedio</h3>
+                    <div class="kpi-value">12.4 ms</div>
+                    <div class="kpi-change positive">-1.2ms vs ayer</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="filters">
+            <div class="filter-group">
+                <label>📅 Período:</label>
+                <select id="periodFilter">
+                    <option value="realtime">Tiempo Real</option>
+                    <option value="1h">Última Hora</option>
+                    <option value="24h" selected>Últimas 24h</option>
+                    <option value="7d">Últimos 7 días</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>🌐 Tipo de Red:</label>
+                <select id="networkType">
+                    <option value="all">Todas</option>
+                    <option value="backbone">Backbone</option>
+                    <option value="metro">Metro</option>
+                    <option value="access">Acceso</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>📍 Región:</label>
+                <select id="regionFilter">
+                    <option value="all">Todas</option>
+                    <option value="norte">Norte</option>
+                    <option value="centro">Centro</option>
+                    <option value="sur">Sur</option>
+                </select>
+            </div>
+            <button class="btn-primary">Aplicar</button>
+            <button class="btn-secondary">Exportar Reporte</button>
+        </section>
+
+        <!-- Real-time Traffic Charts -->
+        <section class="charts-grid">
+            <div class="chart-container full-width">
+                <h3>📈 Tráfico en Tiempo Real (Últimas 24 horas)</h3>
+                <div class="chart-placeholder">
+                    <canvas id="trfRealtimeChart" width="800" height="250"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>🔥 Top 10 Enlaces con Mayor Utilización</h3>
+                <div class="chart-placeholder">
+                    <div class="traffic-list">
+                        <div class="traffic-item critical">
+                            <span class="traffic-name">Enlace Lima-Callao-01</span>
+                            <div class="traffic-bar">
+                                <div class="traffic-fill" style="width: 95%; background: #e74c3c;"></div>
+                            </div>
+                            <span class="traffic-value">95%</span>
+                        </div>
+                        <div class="traffic-item warning">
+                            <span class="traffic-name">Enlace San Isidro-Centro</span>
+                            <div class="traffic-bar">
+                                <div class="traffic-fill" style="width: 87%; background: #f39c12;"></div>
+                            </div>
+                            <span class="traffic-value">87%</span>
+                        </div>
+                        <div class="traffic-item warning">
+                            <span class="traffic-name">Backbone Principal Norte</span>
+                            <div class="traffic-bar">
+                                <div class="traffic-fill" style="width: 82%; background: #f39c12;"></div>
+                            </div>
+                            <span class="traffic-value">82%</span>
+                        </div>
+                        <div class="traffic-item normal">
+                            <span class="traffic-name">Enlace Miraflores-Barranco</span>
+                            <div class="traffic-bar">
+                                <div class="traffic-fill" style="width: 68%; background: #3498db;"></div>
+                            </div>
+                            <span class="traffic-value">68%</span>
+                        </div>
+                        <div class="traffic-item normal">
+                            <span class="traffic-name">Metro Ring Lima Sur</span>
+                            <div class="traffic-bar">
+                                <div class="traffic-fill" style="width: 65%; background: #3498db;"></div>
+                            </div>
+                            <span class="traffic-value">65%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>📊 Distribución de Tráfico por Tipo</h3>
+                <div class="chart-placeholder">
+                    <canvas id="trfTypeChart" width="300" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>🌐 Mapa de Red - Estado de Enlaces</h3>
+                <div class="chart-placeholder">
+                    <div class="network-map">
+                        <svg width="100%" height="300" viewBox="0 0 400 300">
+                            <!-- Nodos principales -->
+                            <circle cx="200" cy="50" r="15" fill="#2ecc71" stroke="#27ae60" stroke-width="3"/>
+                            <text x="200" y="55" text-anchor="middle" fill="white" font-size="10">CORE</text>
+                            
+                            <circle cx="100" cy="150" r="12" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+                            <text x="100" y="154" text-anchor="middle" fill="white" font-size="9">N1</text>
+                            
+                            <circle cx="300" cy="150" r="12" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                            <text x="300" y="154" text-anchor="middle" fill="white" font-size="9">N2</text>
+                            
+                            <circle cx="50" cy="250" r="10" fill="#f39c12" stroke="#e67e22" stroke-width="2"/>
+                            <text x="50" y="254" text-anchor="middle" fill="white" font-size="8">A1</text>
+                            
+                            <circle cx="150" cy="250" r="10" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+                            <text x="150" y="254" text-anchor="middle" fill="white" font-size="8">A2</text>
+                            
+                            <circle cx="250" cy="250" r="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+                            <text x="250" y="254" text-anchor="middle" fill="white" font-size="8">A3</text>
+                            
+                            <circle cx="350" cy="250" r="10" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                            <text x="350" y="254" text-anchor="middle" fill="white" font-size="8">A4</text>
+                            
+                            <!-- Enlaces -->
+                            <line x1="200" y1="65" x2="100" y2="140" stroke="#2ecc71" stroke-width="2"/>
+                            <line x1="200" y1="65" x2="300" y2="140" stroke="#e74c3c" stroke-width="3" stroke-dasharray="5,5"/>
+                            
+                            <line x1="100" y1="160" x2="50" y2="240" stroke="#f39c12" stroke-width="2"/>
+                            <line x1="100" y1="160" x2="150" y2="240" stroke="#2ecc71" stroke-width="2"/>
+                            
+                            <line x1="300" y1="160" x2="250" y2="240" stroke="#3498db" stroke-width="2"/>
+                            <line x1="300" y1="160" x2="350" y2="240" stroke="#e74c3c" stroke-width="3"/>
+                        </svg>
+                        <div class="legend">
+                            <span><span class="dot green"></span> Normal</span>
+                            <span><span class="dot orange"></span> Advertencia</span>
+                            <span><span class="dot red"></span> Crítico</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>⏱️ Latencia por Región</h3>
+                <div class="chart-placeholder">
+                    <canvas id="latencyChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>📉 Packet Loss (%) - Últimos 7 días</h3>
+                <div class="chart-placeholder">
+                    <canvas id="packetLossChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Critical Alerts -->
+        <section class="alert-section">
+            <h3>🚨 Alertas Críticas de Tráfico</h3>
+            <div class="alerts-grid">
+                <div class="alert alert-critical">
+                    <strong>🔴 CRÍTICO:</strong> Enlace Lima-Callao-01 al 95% de capacidad. Riesgo de congestión inminente.
+                    <button class="btn-sm btn-alert">Escalar</button>
+                </div>
+                <div class="alert alert-warning">
+                    <strong>⚠️ ADVERTENCIA:</strong> 3 enlaces superaron el 85% de utilización en la última hora.
+                    <button class="btn-sm btn-alert">Ver Detalles</button>
+                </div>
+                <div class="alert alert-info">
+                    <strong>ℹ️ INFO:</strong> Mantenimiento programado para Backbone Norte el 15/03 02:00-06:00.
+                    <button class="btn-sm">Más Info</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Traffic Table -->
+        <section class="data-table-section">
+            <h3>📋 Detalle de Enlaces y Tráfico</h3>
+            <div class="table-controls">
+                <input type="text" id="searchTRFTable" placeholder="🔍 Buscar enlace, región..." onkeyup="filterTable()">
+                <button class="btn-secondary">📥 Exportar CSV</button>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table detailed-table">
+                    <thead>
+                        <tr>
+                            <th>Enlace ID</th>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Región</th>
+                            <th>Capacidad</th>
+                            <th>Uso Actual</th>
+                            <th>% Utilización</th>
+                            <th>Latencia</th>
+                            <th>Packet Loss</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row-critical">
+                            <td>#TRF-001</td>
+                            <td>Lima-Callao-01</td>
+                            <td>Backbone</td>
+                            <td>Centro</td>
+                            <td>10 Gbps</td>
+                            <td>9.5 Gbps</td>
+                            <td><span class="util-critical">95%</span></td>
+                            <td>8.2 ms</td>
+                            <td>0.02%</td>
+                            <td><span class="status-badge status-critical">Crítico</span></td>
+                            <td><button class="btn-sm">Ver</button></td>
+                        </tr>
+                        <tr class="row-warning">
+                            <td>#TRF-002</td>
+                            <td>San Isidro-Centro</td>
+                            <td>Metro</td>
+                            <td>Centro</td>
+                            <td>5 Gbps</td>
+                            <td>4.35 Gbps</td>
+                            <td><span class="util-warning">87%</span></td>
+                            <td>12.1 ms</td>
+                            <td>0.05%</td>
+                            <td><span class="status-badge status-warning">Advertencia</span></td>
+                            <td><button class="btn-sm">Ver</button></td>
+                        </tr>
+                        <tr>
+                            <td>#TRF-003</td>
+                            <td>Miraflores-Barranco</td>
+                            <td>Acceso</td>
+                            <td>Sur</td>
+                            <td>2 Gbps</td>
+                            <td>1.36 Gbps</td>
+                            <td><span class="util-normal">68%</span></td>
+                            <td>15.4 ms</td>
+                            <td>0.01%</td>
+                            <td><span class="status-badge status-ok">Normal</span></td>
+                            <td><button class="btn-sm">Ver</button></td>
+                        </tr>
+                        <tr>
+                            <td>#TRF-004</td>
+                            <td>Surco-La Molina</td>
+                            <td>Acceso</td>
+                            <td>Sur</td>
+                            <td>1 Gbps</td>
+                            <td>0.45 Gbps</td>
+                            <td><span class="util-low">45%</span></td>
+                            <td>18.7 ms</td>
+                            <td>0.03%</td>
+                            <td><span class="status-badge status-ok">Normal</span></td>
+                            <td><button class="btn-sm">Ver</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button class="btn-sm">« Anterior</button>
+                <span class="page-info">Mostrando 1-10 de 88,732 registros</span>
+                <button class="btn-sm">Siguiente »</button>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 CLARO IT - TRF Fijo Dashboard | Tabla MySQL: cur_trf_fijo_trf_fijo (88,732 registros)</p>
+        </footer>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

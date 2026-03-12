@@ -1,0 +1,93 @@
+MAPA DE FRAUDES - VERSIÓN FINAL CON COLORES POR CANAL
+=========================================================
+
+✅ IMPLEMENTACIÓN COMPLETADA
+
+1. MARCADORES CON COLOR POR CANAL
+   - AGENTES: #dc2626 (Rojo)
+   - TELEFONICO VENTA: #f59e0b (Naranja)
+   - CAV: #3b82f6 (Azul)
+   - DIGITAL: #10b981 (Verde)
+   - TELEFONICO SERVICIO: #8b5cf6 (Morado)
+
+2. LÓGICA DE AGRUPACIÓN
+   - Se agrupa por CIUDAD primero
+   - Luego se subdivide por CANAL dentro de cada ciudad
+   - Se crea UN MARCADOR por cada combinación CIUDAD-CANAL
+   - Ejemplo: Si Cali tiene casos en 3 canales diferentes, se crean 3 marcadores
+
+3. SEPARACIÓN VISUAL
+   - Si una ciudad tiene múltiples canales, los marcadores se separan circularmente
+   - Radio de separación: 0.02 grados (aprox. 2.2 km)
+   - Distribución: círculo completo alrededor del centro de la ciudad
+   - Esto evita superposición y permite ver todos los canales claramente
+
+4. TAMAÑO DINÁMICO
+   - Cada marcador muestra el NÚMERO de casos para ese canal específico
+   - Fórmula: size = Math.min(20 + (numCasos * 3), 60)
+   - Ejemplos:
+     * 1 caso → 23px
+     * 5 casos → 35px
+     * 10 casos → 50px
+     * 20+ casos → 60px (máximo)
+
+5. FILTRO POR CANAL FUNCIONAL
+   - Dropdown en la parte superior del mapa
+   - Opciones: "Todos los canales" + cada canal individual
+   - Al seleccionar un canal:
+     * Se ocultan todos los marcadores
+     * Solo se muestran los marcadores del canal seleccionado
+   - Funcionalidad completa: addEventListener + markersByCanal array
+
+6. POPUPS INDIVIDUALIZADOS
+   - Cada marcador tiene su propio popup
+   - Header con color del canal y nombre: "CIUDAD - CANAL"
+   - Muestra el número de casos para ese canal en esa ciudad
+   - Lista los primeros 8 casos con:
+     * Fecha (en color del canal)
+     * Asesor comercial
+   - Indica si hay más casos no mostrados
+   - Coordenadas de la ciudad al final
+
+7. LEYENDA COMPLETA
+   - Posición: bottom-right
+   - Fondo blanco semi-transparente
+   - Borde negro de 3px
+   - Muestra todos los canales con sus colores
+   - Círculos coloreados idénticos a los marcadores
+   - Instrucciones de uso: "Usa el filtro arriba para filtrar por canal"
+   - Nota: "Tamaño = Número de casos"
+
+8. FONDO CLARO
+   - CartoDB Light tiles
+   - Máximo contraste con marcadores de colores
+   - Zoom 7 (vista amplia del suroccidente)
+   - Centrado en [3.0°N, -76.0°W]
+
+RESULTADOS ESPERADOS:
+- ✅ Entre 30-50 marcadores visibles (depende de cuántas combinaciones ciudad-canal existan)
+- ✅ Colores vibrantes y fácilmente distinguibles
+- ✅ Cali, Popayán, Palmira con múltiples marcadores (tienen varios canales)
+- ✅ Ciudades pequeñas con 1-2 marcadores
+- ✅ Filtro permite ver solo un canal a la vez
+- ✅ 0 errores JavaScript
+- ✅ Rendimiento óptimo
+
+CÓMO USAR EL MAPA:
+1. Refresca el dashboard (F5)
+2. Verás múltiples marcadores de colores en cada ciudad
+3. Los colores indican el canal de fraude
+4. El tamaño indica cuántos casos
+5. El número dentro muestra la cantidad exacta
+6. Click en cualquier marcador para ver detalles
+7. Usa el filtro dropdown para ver solo un canal
+
+VENTAJAS DE ESTA IMPLEMENTACIÓN:
+✓ Visibilidad máxima (colores vibrantes sobre fondo claro)
+✓ Información granular (por ciudad Y por canal)
+✓ Filtrado funcional (dropdown activo)
+✓ Separación inteligente (offset circular)
+✓ Bordes blancos gruesos (5px) para contraste adicional
+✓ Sombras múltiples para efecto 3D
+✓ Popups informativos y personalizados
+✓ Leyenda completa con instrucciones

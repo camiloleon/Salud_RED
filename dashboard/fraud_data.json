@@ -1,0 +1,728 @@
+{
+  "total_registros": 74,
+  "canal_principal": {
+    "AGENTES": 36,
+    "TELEFONICO VENTA": 20,
+    "CAV": 15,
+    "DIGITAL": 2,
+    "TELEFONICO SERVICIO": 1
+  },
+  "canal_secundario": {
+    "CALLE": 28,
+    "TMK OUT BOUND": 15,
+    "CAV": 15,
+    "PDV": 7,
+    "TMK IN BOUND": 5,
+    "ECOMMERCE ASISTIDO": 2,
+    "SAC": 1,
+    "EYN": 1
+  },
+  "asesores": {
+    "JOHANA ROSERO PERENGUE": 3,
+    "ANDRES MAURICIO MONTER": 2,
+    "GUZMAN VELA SEBASTIAN": 2,
+    "ARLEX ADEY PALACIOS LO": 2,
+    "ZUNIGA RIVERA ANGELICA": 2,
+    "OSCAR LEONARDO PARRADO": 2,
+    "MAESTRE BIRRIEL ELISA": 2,
+    "LUIS EDUARDO VILLAFANE": 2,
+    "SUAREZ RIVERA PAOLA AN": 2,
+    "BUITRAGO GIRALDO VALEN": 1,
+    "CASTILLO GARCIA JOHANN": 1,
+    "CARDONA ZAPATA LUZ ARG": 1,
+    "ARDILA VAZQUEZ ALIX AL": 1,
+    "AVILA ROMERO NILSE DIO": 1,
+    "ANGEL DUBAN MEDINA GUE": 1
+  },
+  "zonas": {
+    "507578": 22,
+    "508582": 11,
+    "507572": 10,
+    "508584": 9,
+    "506564": 8,
+    "506561": 8,
+    "507573": 6
+  },
+  "razones": {
+    "UNIDAD POSIBLE FRAUDE": 74
+  },
+  "regionales": {
+    "RVA": 53,
+    "RCE": 16,
+    "REC": 5
+  },
+  "geo_data": [
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "PDV",
+      "Zona": 507578,
+      "Ciudad": "PALMIRA",
+      "Coordenada X": -76.28794,
+      "Coordenada Y": 3.54421,
+      "Asesor comercial": "ANDREA CATALINA DE LA",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.58827,
+      "Coordenada Y": 2.46458,
+      "Asesor comercial": "ANDRES MAURICIO MONTER",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.58827,
+      "Coordenada Y": 2.46458,
+      "Asesor comercial": "ANDRES MAURICIO MONTER",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 508584,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.5557,
+      "Coordenada Y": 3.37223,
+      "Asesor comercial": "ANGEL DUBAN MEDINA GUE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 506564,
+      "Ciudad": "NEIVA",
+      "Coordenada X": -75.24624,
+      "Coordenada Y": 2.94087,
+      "Asesor comercial": "ARDILA VAZQUEZ ALIX AL",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "BUGA",
+      "Coordenada X": -76.29744,
+      "Coordenada Y": 3.91341,
+      "Asesor comercial": "ARLEX ADEY PALACIOS LO",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 506561,
+      "Ciudad": "FLANDES",
+      "Coordenada X": -74.81586,
+      "Coordenada Y": 4.27734,
+      "Asesor comercial": "ARLEX ADEY PALACIOS LO",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 508584,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.50768,
+      "Coordenada Y": 3.40386,
+      "Asesor comercial": "AVILA ROMERO NILSE DIO",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "DIGITAL",
+      "CANAL2": "ECOMMERCE ASISTIDO",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.59865,
+      "Coordenada Y": 2.45464,
+      "Asesor comercial": "BARRERA RODRIGUEZ MAN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "CARTAGO",
+      "Coordenada X": -75.93439,
+      "Coordenada Y": 4.76154,
+      "Asesor comercial": "BOLIVAR PULGARIN YESSI",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 508584,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.56076,
+      "Coordenada Y": 3.45252,
+      "Asesor comercial": "BUITRAGO GIRALDO VALEN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "PDV",
+      "Zona": 508584,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.50904,
+      "Coordenada Y": 3.40235,
+      "Asesor comercial": "CARDONA ZAPATA LUZ ARG",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "DIGITAL",
+      "CANAL2": "ECOMMERCE ASISTIDO",
+      "Zona": 508582,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.51211,
+      "Coordenada Y": 3.47931,
+      "Asesor comercial": "CASTILLO GARCIA JOHANN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.58711,
+      "Coordenada Y": 2.46163,
+      "Asesor comercial": "CHITOYEISON EDUARDO",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 508584,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.50363,
+      "Coordenada Y": 3.39966,
+      "Asesor comercial": "DIEGO ANDRES SOTO MART",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 508582,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.51298,
+      "Coordenada Y": 3.42259,
+      "Asesor comercial": "EDWIN ANDRES HERNANDEZ",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "CARTAGO",
+      "Coordenada X": -75.90071,
+      "Coordenada Y": 4.75579,
+      "Asesor comercial": "ERIKA PAOLA ESPINOSA V",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 508582,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.49539,
+      "Coordenada Y": 3.43028,
+      "Asesor comercial": "ESTEBAN CALLE CHAVARRI",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 506564,
+      "Ciudad": "NEIVA",
+      "Coordenada X": -75.29134,
+      "Coordenada Y": 2.94576,
+      "Asesor comercial": "FAVIO VEGA DOCTOR",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "FLORIDA",
+      "Coordenada X": -76.23116,
+      "Coordenada Y": 3.32337,
+      "Asesor comercial": "FLOREZ CARLOS ARTURO",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 506561,
+      "Ciudad": "FLANDES",
+      "Coordenada X": -74.81186,
+      "Coordenada Y": 4.28861,
+      "Asesor comercial": "GOMEZ VILLANUEVA HAROL",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO SERVICIO",
+      "CANAL2": "SAC",
+      "Zona": 508582,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.49524,
+      "Coordenada Y": 3.47613,
+      "Asesor comercial": "GONZALEZ CESPEDES JUAN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK IN BOUND",
+      "Zona": 507578,
+      "Ciudad": "SEVILLA",
+      "Coordenada X": -75.93624,
+      "Coordenada Y": 4.2702,
+      "Asesor comercial": "GUZMAN VELA SEBASTIAN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK IN BOUND",
+      "Zona": 507578,
+      "Ciudad": "SEVILLA",
+      "Coordenada X": -75.93624,
+      "Coordenada Y": 4.2702,
+      "Asesor comercial": "GUZMAN VELA SEBASTIAN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 508584,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.51485,
+      "Coordenada Y": 3.35569,
+      "Asesor comercial": "HAIDER DAVID MEDINA CA",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "PALMIRA",
+      "Coordenada X": -76.28574,
+      "Coordenada Y": 3.53235,
+      "Asesor comercial": "HERNANDEZ PERALTA JONA",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "PDV",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.62579,
+      "Coordenada Y": 2.44524,
+      "Asesor comercial": "HOMEN BURBANO CLAUDIA",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 508584,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.51332,
+      "Coordenada Y": 3.41161,
+      "Asesor comercial": "JANIRIA BERNAL JIMENEZ",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 506561,
+      "Ciudad": "ESPINAL",
+      "Coordenada X": -74.89393,
+      "Coordenada Y": 4.14186,
+      "Asesor comercial": "JEFERSON RODRIGUEZ ROM",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.61532,
+      "Coordenada Y": 2.42284,
+      "Asesor comercial": "JHOANA PAOLA VARON BE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "PALMIRA",
+      "Coordenada X": -76.31233,
+      "Coordenada Y": 3.54705,
+      "Asesor comercial": "JHONN JAIRO ORTEGA PER",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "PDV",
+      "Zona": 506561,
+      "Ciudad": "FLANDES",
+      "Coordenada X": -74.81443,
+      "Coordenada Y": 4.2677,
+      "Asesor comercial": "JOAN MAURICIO GARCIA Q",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "PALMIRA",
+      "Coordenada X": -76.28574,
+      "Coordenada Y": 3.53235,
+      "Asesor comercial": "JOHANA ROSERO PERENGUE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "PALMIRA",
+      "Coordenada X": -76.2825,
+      "Coordenada Y": 3.5314,
+      "Asesor comercial": "JOHANA ROSERO PERENGUE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "PALMIRA",
+      "Coordenada X": -76.31572,
+      "Coordenada Y": 3.54664,
+      "Asesor comercial": "JOHANA ROSERO PERENGUE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 506564,
+      "Ciudad": "FLORENCIA",
+      "Coordenada X": -75.61236,
+      "Coordenada Y": 1.61984,
+      "Asesor comercial": "JOSE LUIS OLARTE NOREN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK IN BOUND",
+      "Zona": 506564,
+      "Ciudad": "FLORENCIA",
+      "Coordenada X": -75.60822,
+      "Coordenada Y": 1.61164,
+      "Asesor comercial": "LEON RIANO JOHAN SAMUE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "PDV",
+      "Zona": 507578,
+      "Ciudad": "PALMIRA",
+      "Coordenada X": -76.31053,
+      "Coordenada Y": 3.54879,
+      "Asesor comercial": "LUIS ADOLFO VALENCIA R",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 506564,
+      "Ciudad": "NEIVA",
+      "Coordenada X": -75.26306,
+      "Coordenada Y": 2.92611,
+      "Asesor comercial": "LUIS EDUARDO VILLAFANE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 506564,
+      "Ciudad": "NEIVA",
+      "Coordenada X": -75.26306,
+      "Coordenada Y": 2.92611,
+      "Asesor comercial": "LUIS EDUARDO VILLAFANE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "CARTAGO",
+      "Coordenada X": -75.93328,
+      "Coordenada Y": 4.76256,
+      "Asesor comercial": "MAESTRE BIRRIEL ELISA",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "CARTAGO",
+      "Coordenada X": -75.93328,
+      "Coordenada Y": 4.76256,
+      "Asesor comercial": "MAESTRE BIRRIEL ELISA",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "BUGA",
+      "Coordenada X": -76.29573,
+      "Coordenada Y": 3.92005,
+      "Asesor comercial": "MARIA CAROLINA PENA RA",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 508582,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.4802,
+      "Coordenada Y": 3.42595,
+      "Asesor comercial": "MIGUEL ANGEL LOPEZ ARE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507573,
+      "Ciudad": "PASTO",
+      "Coordenada X": -77.27452,
+      "Coordenada Y": 1.21386,
+      "Asesor comercial": "MILLER SANTACRUZ NARVA",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 508584,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.52164,
+      "Coordenada Y": 3.38667,
+      "Asesor comercial": "MORALES BRITNEY DAYAN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 507578,
+      "Ciudad": "CARTAGO",
+      "Coordenada X": -75.92473,
+      "Coordenada Y": 4.74291,
+      "Asesor comercial": "MORALES HERNANDEZ MONI",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.57873,
+      "Coordenada Y": 2.46825,
+      "Asesor comercial": "ONATE MEJIA JESUS ALEX",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 507573,
+      "Ciudad": "IPIALES",
+      "Coordenada X": -77.65905,
+      "Coordenada Y": 0.82757,
+      "Asesor comercial": "OSCAR LEONARDO PARRADO",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 507573,
+      "Ciudad": "IPIALES",
+      "Coordenada X": -77.65905,
+      "Coordenada Y": 0.82757,
+      "Asesor comercial": "OSCAR LEONARDO PARRADO",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.62684,
+      "Coordenada Y": 2.44794,
+      "Asesor comercial": "PENA MORENO DANIEL FEL",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 506564,
+      "Ciudad": "NEIVA",
+      "Coordenada X": -75.28245,
+      "Coordenada Y": 2.93216,
+      "Asesor comercial": "POLANIA MONTERO LUISA",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 507578,
+      "Ciudad": "PALMIRA",
+      "Coordenada X": -76.30338,
+      "Coordenada Y": 3.52025,
+      "Asesor comercial": "POTES BEDOYA LUZ AIDEE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.60547,
+      "Coordenada Y": 2.45796,
+      "Asesor comercial": "PULIDO RODRIGUEZ DANIE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "PDV",
+      "Zona": 507578,
+      "Ciudad": "CAICEDONIA",
+      "Coordenada X": -75.82796,
+      "Coordenada Y": 4.33081,
+      "Asesor comercial": "RODAS GIRALDO JHON ALE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 506561,
+      "Ciudad": "IBAGUE",
+      "Coordenada X": -75.20331,
+      "Coordenada Y": 4.45691,
+      "Asesor comercial": "RODRIGUEZ HERRERA ANDR",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 506564,
+      "Ciudad": "NEIVA",
+      "Coordenada X": -75.27438,
+      "Coordenada Y": 2.92569,
+      "Asesor comercial": "SALINAS MORENO MARIA F",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 508584,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.52345,
+      "Coordenada Y": 3.41542,
+      "Asesor comercial": "SANCHEZ CASTILLO MARY",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 508582,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.50734,
+      "Coordenada Y": 3.4205,
+      "Asesor comercial": "SANCHEZ CUENO LUZ DAR",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 508582,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.50871,
+      "Coordenada Y": 3.43874,
+      "Asesor comercial": "SERNA VELEZ ERNESTO",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "PDV",
+      "Zona": 508582,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.49701,
+      "Coordenada Y": 3.47069,
+      "Asesor comercial": "SOELIA DE JESUS MONSAL",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 506561,
+      "Ciudad": "FLANDES",
+      "Coordenada X": -74.83092,
+      "Coordenada Y": 4.27201,
+      "Asesor comercial": "SUAREZ RIVERA PAOLA AN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "CALLE",
+      "Zona": 506561,
+      "Ciudad": "FLANDES",
+      "Coordenada X": -74.83092,
+      "Coordenada Y": 4.27201,
+      "Asesor comercial": "SUAREZ RIVERA PAOLA AN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 506561,
+      "Ciudad": "ESPINAL",
+      "Coordenada X": -74.88407,
+      "Coordenada Y": 4.14312,
+      "Asesor comercial": "TORRES JIMENEZ KATHERI",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "TELEFONICO VENTA",
+      "CANAL2": "TMK OUT BOUND",
+      "Zona": 507572,
+      "Ciudad": "POPAYAN",
+      "Coordenada X": -76.6008,
+      "Coordenada Y": 2.45355,
+      "Asesor comercial": "TORRES PAEZ LAURA SOFI",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "CAV",
+      "CANAL2": "CAV",
+      "Zona": 507578,
+      "Ciudad": "PALMIRA",
+      "Coordenada X": -76.29739,
+      "Coordenada Y": 3.53424,
+      "Asesor comercial": "VELANDIA MORENO ANGIE",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    },
+    {
+      "CANAL": "AGENTES",
+      "CANAL2": "EYN",
+      "Zona": 508582,
+      "Ciudad": "CALI",
+      "Coordenada X": -76.50607,
+      "Coordenada Y": 3.41942,
+      "Asesor comercial": "ZULUAGA FAJARDO LOREN",
+      "Razón": "UNIDAD POSIBLE FRAUDE"
+    }
+  ],
+  "fecha_inicio": "2026-02-10",
+  "fecha_fin": "2026-03-09"
+}
