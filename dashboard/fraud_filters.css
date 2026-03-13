@@ -1,0 +1,944 @@
+/* ====================================
+   FRAUD FILTERS PANEL
+   Adaptado a temática Terminal/Alert
+   ==================================== */
+
+:root {
+    --filter-width: 340px;
+    --filter-header-height: 60px;
+    --filter-footer-height: 80px;
+}
+
+/* ====================================
+   LAYOUT PRINCIPAL CON FILTROS
+   ==================================== */
+body.fraud-theme .terminal-container {
+    margin-left: var(--filter-width);
+    transition: margin-left 0.3s ease;
+}
+
+body.fraud-theme .terminal-container.filters-hidden {
+    margin-left: 0;
+}
+
+/* ====================================
+   PANEL LATERAL DE FILTROS
+   ==================================== */
+.filter-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--filter-width);
+    height: 100vh;
+    background: var(--terminal-bg);
+    border-right: 2px solid var(--alert-red);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    box-shadow: 4px 0 20px rgba(220, 38, 38, 0.4);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.filter-sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+/* ====================================
+   HEADER DEL PANEL
+   ==================================== */
+.filter-header {
+    height: var(--filter-header-height);
+    padding: 16px;
+    border-bottom: 2px solid var(--alert-red);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, var(--alert-red-dark) 0%, var(--alert-red) 100%);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.filter-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-icon {
+    font-size: 24px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.filter-title h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-size: 16px;
+    color: white;
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* ====================================
+   CONTADOR DE RESULTADOS
+   ==================================== */
+.filter-results {
+    padding: 16px;
+    background: var(--terminal-bg-secondary);
+    border-bottom: 1px solid var(--terminal-border);
+}
+
+.results-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 12px;
+    background: var(--terminal-panel);
+    border: 1px solid var(--alert-red);
+    border-radius: 4px;
+}
+
+.count-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--alert-red);
+    line-height: 1;
+    text-shadow: 0 0 10px var(--alert-red-glow);
+}
+
+.count-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 24px;
+}
+
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    background: var(--terminal-panel);
+    border: 1px solid var(--alert-red);
+    border-radius: 3px;
+    font-size: 11px;
+    color: var(--text-primary);
+    animation: chipIn 0.3s ease;
+}
+
+@keyframes chipIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.filter-chip .chip-remove {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    font-weight: bold;
+}
+
+.filter-chip .chip-remove:hover {
+    opacity: 1;
+    color: var(--alert-red);
+}
+
+/* ====================================
+   CONTENIDO SCROLLABLE
+   ==================================== */
+.filter-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: var(--filter-footer-height);
+}
+
+/* Custom Scrollbar */
+.filter-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.filter-content::-webkit-scrollbar-track {
+    background: var(--terminal-bg);
+}
+
+.filter-content::-webkit-scrollbar-thumb {
+    background: var(--terminal-border);
+    border-radius: 4px;
+}
+
+.filter-content::-webkit-scrollbar-thumb:hover {
+    background: var(--alert-red);
+}
+
+/* ====================================
+   SECCIONES DE FILTROS
+   ==================================== */
+.filter-section {
+    border-bottom: 1px solid var(--terminal-border);
+    background: var(--terminal-bg-secondary);
+}
+
+.section-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: default;
+    background: var(--terminal-panel);
+    transition: background 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.section-header.clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.section-header.clickable:hover {
+    background: var(--terminal-panel-hover);
+    border-left-color: var(--alert-red);
+}
+
+.section-header h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.selection-count {
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 2px 8px;
+    background: var(--terminal-bg);
+    border: 1px solid var(--terminal-border);
+    border-radius: 3px;
+}
+
+.collapse-icon {
+    font-size: 12px;
+    transition: transform 0.3s;
+    color: var(--alert-red);
+}
+
+.filter-section.collapsible.collapsed .collapse-icon {
+    transform: rotate(-90deg);
+}
+
+.section-content {
+    padding: 12px 16px 16px;
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.filter-section.collapsible.collapsed .section-content {
+    max-height: 0;
+    padding: 0 16px;
+}
+
+/* ====================================
+   DATE RANGE PICKER
+   ==================================== */
+.date-range-picker {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.date-input-group label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.date-input-group input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-panel);
+    color: var(--text-primary);
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: 'Roboto Mono', monospace;
+    transition: all 0.2s;
+}
+
+.date-input-group input[type="date"]:focus {
+    outline: none;
+    border-color: var(--alert-red);
+    box-shadow: 0 0 8px var(--alert-red-glow);
+}
+
+.date-presets {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.preset-btn {
+    flex: 1;
+    min-width: 70px;
+    padding: 6px 10px;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-panel);
+    color: var(--text-secondary);
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.preset-btn:hover {
+    background: var(--terminal-panel-hover);
+    border-color: var(--alert-red);
+}
+
+.preset-btn.active {
+    background: var(--alert-red);
+    color: white;
+    border-color: var(--alert-red);
+    box-shadow: 0 0 10px var(--alert-red-glow);
+}
+
+/* ====================================
+   CHECKBOX GRID (Canales)
+   ==================================== */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.checkbox-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-card input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-panel);
+    transition: all 0.2s;
+    border-radius: 3px;
+}
+
+.checkbox-card:hover .card-content {
+    border-color: var(--alert-red);
+    background: var(--terminal-panel-hover);
+}
+
+.checkbox-card input:checked ~ .card-content {
+    border-color: var(--alert-red);
+    background: rgba(220, 38, 38, 0.15);
+    box-shadow: 0 0 8px var(--alert-red-glow);
+}
+
+.card-icon {
+    font-size: 18px;
+}
+
+.card-label {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-badge {
+    background: var(--terminal-bg);
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid var(--terminal-border);
+}
+
+.checkbox-card input:checked ~ .card-content .card-badge {
+    background: var(--alert-red);
+    color: white;
+    border-color: var(--alert-red);
+}
+
+/* ====================================
+   SEARCH BOX
+   ==================================== */
+.search-box {
+    margin-bottom: 12px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-panel);
+    color: var(--text-primary);
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: 'Roboto Mono', monospace;
+    transition: all 0.2s;
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--alert-red);
+    box-shadow: 0 0 8px var(--alert-red-glow);
+}
+
+/* ====================================
+   CHECKBOX LIST (Ciudades)
+   ==================================== */
+.ciudad-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.ciudad-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ciudad-list::-webkit-scrollbar-track {
+    background: var(--terminal-bg);
+}
+
+.ciudad-list::-webkit-scrollbar-thumb {
+    background: var(--terminal-border);
+    border-radius: 3px;
+}
+
+.checkbox-list-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.checkbox-list-item:hover {
+    background: var(--terminal-panel-hover);
+}
+
+.checkbox-list-item input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: var(--alert-red);
+}
+
+.item-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+.item-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    z-index: 1;
+    padding: 2px 6px;
+    background: var(--terminal-bg);
+    border-radius: 3px;
+    border: 1px solid var(--terminal-border);
+}
+
+.checkbox-list-item input:checked ~ .item-badge {
+    background: var(--alert-red);
+    color: white;
+    border-color: var(--alert-red);
+}
+
+.item-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(220, 38, 38, 0.2), transparent);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.expand-btn {
+    width: 100%;
+    padding: 8px;
+    border: 1px dashed var(--terminal-border);
+    background: transparent;
+    border-radius: 3px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-family: 'Roboto Mono', monospace;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.expand-btn:hover {
+    border-color: var(--alert-red);
+    color: var(--alert-red);
+    background: rgba(220, 38, 38, 0.05);
+}
+
+/* ====================================
+   BOTONES SECUNDARIOS
+   ==================================== */
+.secondary-btn {
+    padding: 10px 16px;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-panel);
+    color: var(--text-primary);
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+}
+
+.secondary-btn:hover {
+    background: var(--terminal-panel-hover);
+    border-color: var(--alert-red);
+    color: var(--alert-red);
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* ====================================
+   FILTROS OPERATIVOS
+   ==================================== */
+.filter-group {
+    margin-bottom: 16px;
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+.filter-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.searchable-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-panel);
+    color: var(--text-primary);
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: 'Roboto Mono', monospace;
+    margin-bottom: 8px;
+}
+
+.quick-filters {
+    display: flex;
+    gap: 6px;
+}
+
+.quick-btn {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-panel);
+    color: var(--text-secondary);
+    border-radius: 3px;
+    font-size: 10px;
+    font-family: 'Roboto Mono', monospace;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.quick-btn:hover {
+    background: var(--alert-red);
+    color: white;
+    border-color: var(--alert-red);
+}
+
+/* ====================================
+   RADIO GROUP CARDS (Aliados)
+   ==================================== */
+.radio-group-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.radio-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.radio-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.radio-card > span:not(.radio-badge) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-panel);
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.radio-card:hover > span:not(.radio-badge) {
+    border-color: var(--alert-red);
+}
+
+.radio-card input:checked ~ span:not(.radio-badge) {
+    border-color: var(--alert-red);
+    background: rgba(220, 38, 38, 0.15);
+    box-shadow: 0 0 8px var(--alert-red-glow);
+}
+
+.radio-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: var(--terminal-bg);
+    color: var(--text-muted);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    border: 1px solid var(--terminal-border);
+}
+
+.radio-card input:checked ~ .radio-badge {
+    background: var(--alert-red);
+    color: white;
+    border-color: var(--alert-red);
+}
+
+/* ====================================
+   SEGMENTED CONTROL (Tipo de Red)
+   ==================================== */
+.segmented-control {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: var(--terminal-bg);
+    padding: 4px;
+    border-radius: 3px;
+    border: 1px solid var(--terminal-border);
+}
+
+.segmented-control input[type="radio"] {
+    display: none;
+}
+
+.segmented-control label {
+    padding: 8px 4px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.segmented-control input:checked + label {
+    background: var(--alert-red);
+    color: white;
+    box-shadow: 0 0 8px var(--alert-red-glow);
+}
+
+/* ====================================
+   BOTÓN DE FILTROS AVANZADOS
+   ==================================== */
+.advanced-filters-btn {
+    margin: 16px;
+    padding: 12px 16px;
+    border: 1px dashed var(--terminal-border);
+    background: var(--terminal-panel);
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+}
+
+.advanced-filters-btn:hover {
+    border-color: var(--alert-red);
+    color: var(--alert-red);
+    background: rgba(220, 38, 38, 0.05);
+}
+
+.advanced-filters-btn .badge {
+    background: var(--alert-red);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ====================================
+   FOOTER CON BOTÓN APLICAR
+   ==================================== */
+.filter-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: var(--filter-width);
+    height: var(--filter-footer-height);
+    padding: 16px;
+    background: var(--terminal-bg);
+    border-top: 2px solid var(--alert-red);
+    box-shadow: 0 -4px 12px rgba(220, 38, 38, 0.3);
+    z-index: 2001;
+}
+
+.apply-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: linear-gradient(135deg, var(--alert-red-dark) 0%, var(--alert-red) 100%);
+    color: white;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5);
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.6);
+}
+
+.apply-btn:active {
+    transform: translateY(0);
+}
+
+/* ====================================
+   OVERLAY MOBILE
+   ==================================== */
+.filter-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1999;
+}
+
+.filter-overlay.visible {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ====================================
+   BOTÓN TOGGLE FILTROS (Mobile)
+   ==================================== */
+.mobile-filter-trigger {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--alert-red);
+    color: white;
+    border: 2px solid var(--alert-red-dark);
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.6);
+    z-index: 1998;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+}
+
+/* ====================================
+   RESPONSIVE - TABLET & MOBILE
+   ==================================== */
+@media (max-width: 1024px) {
+    :root {
+        --filter-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    body.fraud-theme .terminal-container {
+        margin-left: 0;
+    }
+    
+    .filter-sidebar {
+        width: 100%;
+        max-width: 400px;
+        transform: translateX(-100%);
+    }
+    
+    .filter-sidebar.visible {
+        transform: translateX(0);
+    }
+    
+    .filter-footer {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .mobile-filter-trigger {
+        display: flex;
+    }
+    
+    .hide-desktop {
+        display: flex !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
+/* ====================================
+   ANIMACIONES
+   ==================================== */
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.filter-sidebar.visible {
+    animation: slideIn 0.3s ease;
+}
+
+/* Efecto de actualización del contador */
+.results-count.updated {
+    animation: countUpdate 0.5s ease;
+}
+
+@keyframes countUpdate {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}

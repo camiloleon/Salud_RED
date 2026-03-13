@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fraud Analytics Terminal - Sistema de Detección y Análisis</title>
     <link rel="stylesheet" href="fraud_styles.css">
+    <link rel="stylesheet" href="fraud_filters.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,6 +16,225 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body class="fraud-theme">
+    <!-- Filter Sidebar -->
+    <aside id="filterPanel" class="filter-sidebar">
+        <!-- Header del Panel -->
+        <div class="filter-header">
+            <div class="filter-title">
+                <span class="filter-icon">🔍</span>
+                <h2>Filtros</h2>
+            </div>
+            <div class="filter-actions">
+                <button id="saveFilters" class="btn-icon" title="Guardar vista">
+                    <span>💾</span>
+                </button>
+                <button id="resetFilters" class="btn-icon" title="Resetear">
+                    <span>🔄</span>
+                </button>
+                <button id="closeFilters" class="btn-icon hide-desktop" title="Cerrar">
+                    <span>❌</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contador de Resultados -->
+        <div class="filter-results">
+            <div class="results-count">
+                <span id="filteredCount" class="count-number">74</span>
+                <span class="count-label">casos encontrados</span>
+            </div>
+            <div id="activeFiltersChips" class="active-filters">
+                <!-- Se llenará dinámicamente con chips de filtros activos -->
+            </div>
+        </div>
+
+        <!-- Filtros Content -->
+        <div class="filter-content">
+            <!-- Filtro de Fecha -->
+            <div class="filter-section active">
+                <div class="section-header">
+                    <h3>📅 Período</h3>
+                </div>
+                <div class="section-content">
+                    <div class="date-range-picker">
+                        <div class="date-input-group">
+                            <label>Desde</label>
+                            <input type="date" id="dateStart" value="2026-02-10" />
+                        </div>
+                        <div class="date-input-group">
+                            <label>Hasta</label>
+                            <input type="date" id="dateEnd" value="2026-03-09" />
+                        </div>
+                    </div>
+                    <div class="date-presets">
+                        <button class="preset-btn" data-preset="today">Hoy</button>
+                        <button class="preset-btn" data-preset="7d">7 días</button>
+                        <button class="preset-btn" data-preset="30d">30 días</button>
+                        <button class="preset-btn active" data-preset="all">Todo</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filtro de Canal -->
+            <div class="filter-section active">
+                <div class="section-header">
+                    <h3>🏭 Canal</h3>
+                    <span class="selection-count" id="canalCount">5 de 5</span>
+                </div>
+                <div class="section-content">
+                    <div class="checkbox-grid">
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="canal" value="AGENTES" checked />
+                            <span class="card-content">
+                                <span class="card-icon">🔴</span>
+                                <span class="card-label">AGENTES</span>
+                                <span class="card-badge">--</span>
+                            </span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="canal" value="TELEFONICO VENTA" checked />
+                            <span class="card-content">
+                                <span class="card-icon">🟠</span>
+                                <span class="card-label">TELEFÓNICO</span>
+                                <span class="card-badge">--</span>
+                            </span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="canal" value="CAV" checked />
+                            <span class="card-content">
+                                <span class="card-icon">⚪</span>
+                                <span class="card-label">CAV</span>
+                                <span class="card-badge">--</span>
+                            </span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="canal" value="DIGITAL" checked />
+                            <span class="card-content">
+                                <span class="card-icon">🔵</span>
+                                <span class="card-label">DIGITAL</span>
+                                <span class="card-badge">--</span>
+                            </span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="canal" value="TELEFONICO SERVICIO" checked />
+                            <span class="card-content">
+                                <span class="card-icon">🟢</span>
+                                <span class="card-label">SERVICIO</span>
+                                <span class="card-badge">--</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filtro de Ciudad -->
+            <div class="filter-section active">
+                <div class="section-header">
+                    <h3>🗺️ Ubicación</h3>
+                    <span class="selection-count" id="ciudadCount">Todas</span>
+                </div>
+                <div class="section-content">
+                    <div class="search-box">
+                        <input type="text" id="ciudadSearch" placeholder="🔍 Buscar ciudad..." />
+                    </div>
+                    <div class="ciudad-list">
+                        <label class="checkbox-list-item">
+                            <input type="checkbox" name="ciudad" value="CALI" />
+                            <span class="item-label">CALI</span>
+                            <span class="item-badge">20</span>
+                            <span class="item-bar" style="width: 100%"></span>
+                        </label>
+                        <label class="checkbox-list-item">
+                            <input type="checkbox" name="ciudad" value="POPAYAN" />
+                            <span class="item-label">POPAYÁN</span>
+                            <span class="item-badge">10</span>
+                            <span class="item-bar" style="width: 50%"></span>
+                        </label>
+                        <label class="checkbox-list-item">
+                            <input type="checkbox" name="ciudad" value="PALMIRA" />
+                            <span class="item-label">PALMIRA</span>
+                            <span class="item-badge">9</span>
+                            <span class="item-bar" style="width: 45%"></span>
+                        </label>
+                        <label class="checkbox-list-item">
+                            <input type="checkbox" name="ciudad" value="NEIVA" />
+                            <span class="item-label">NEIVA</span>
+                            <span class="item-badge">6</span>
+                            <span class="item-bar" style="width: 30%"></span>
+                        </label>
+                    </div>
+                    <button class="secondary-btn full-width" id="viewMapFilter">
+                        <span>🗺️ Ver en Mapa</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filtros Operativos -->
+            <div class="filter-section collapsible">
+                <div class="section-header clickable" data-collapse="operativos">
+                    <h3>⚙️ Filtros Operativos</h3>
+                    <span class="collapse-icon">▼</span>
+                </div>
+                <div class="section-content" id="operativos">
+                    <!-- Aliado -->
+                    <div class="filter-group">
+                        <label class="filter-label">🤝 Aliado</label>
+                        <div class="radio-group-cards">
+                            <label class="radio-card">
+                                <input type="radio" name="aliado" value="" checked />
+                                <span>Todos</span>
+                                <span class="radio-badge">74</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="aliado" value="8301349713" />
+                                <span>CONECTAR TV</span>
+                                <span class="radio-badge">39</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="aliado" value="9003753252" />
+                                <span>Tabasco</span>
+                                <span class="radio-badge">22</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="aliado" value="9001113432" />
+                                <span>Otro</span>
+                                <span class="radio-badge">13</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tipo de Red -->
+                    <div class="filter-group">
+                        <label class="filter-label">🔧 Tipo de Red</label>
+                        <div class="segmented-control">
+                            <input type="radio" name="tipoRed" value="" id="red-todos" checked />
+                            <label for="red-todos">Todos</label>
+                            
+                            <input type="radio" name="tipoRed" value="Masivo Bidireccional" id="red-masivo" />
+                            <label for="red-masivo">Masivo</label>
+                            
+                            <input type="radio" name="tipoRed" value="FTTH" id="red-ftth" />
+                            <label for="red-ftth">FTTH</label>
+                            
+                            <input type="radio" name="tipoRed" value="Pymes" id="red-pymes" />
+                            <label for="red-pymes">Pymes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón de Aplicar (sticky) -->
+        <div class="filter-footer">
+            <button class="apply-btn" id="applyFilters">
+                <span>📊 APLICAR FILTROS</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Overlay para mobile -->
+    <div id="filterOverlay" class="filter-overlay"></div>
+
     <div class="terminal-container">
         <!-- Terminal Header -->
         <header class="terminal-header">
@@ -266,5 +486,6 @@
     </div>
 
     <script src="fraud_charts.js"></script>
+    <script src="fraud_filters.js"></script>
 </body>
 </html>
