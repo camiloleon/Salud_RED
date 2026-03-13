@@ -1633,7 +1633,12 @@ async function loadFraudData() {
         // Usar datos embebidos directamente (sin fetch)
         fraudData = EMBEDDED_FRAUD_DATA;
         
-        // Calcular ciudades dinÃ¡micamente desde geo_data
+        // Hacer disponible globalmente para filtros
+        if (typeof window !== 'undefined') {
+            window.fraudData = fraudData;
+        }
+        
+        // Calcular ciudades dinámicamente desde geo_data
         const ciudades = {};
         fraudData.geo_data.forEach(item => {
             ciudades[item.Ciudad] = (ciudades[item.Ciudad] || 0) + 1;

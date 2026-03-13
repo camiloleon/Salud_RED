@@ -77,15 +77,16 @@ function initFilterPanel() {
         });
     }
     
-    // Botón toggle desktop
+    // Botón toggle desktop (solo icono hamburger)
     const toggleBtn = document.createElement('button');
     toggleBtn.id = 'toggleFilters';
     toggleBtn.className = 'filter-toggle-btn';
-    toggleBtn.innerHTML = '🔍 FILTROS';
+    toggleBtn.innerHTML = '☰'; // Solo icono hamburger
+    toggleBtn.title = 'Mostrar/Ocultar Filtros';
     toggleBtn.addEventListener('click', () => {
         filterPanel.classList.toggle('hidden');
         container.classList.toggle('filters-hidden');
-        toggleBtn.textContent = filterPanel.classList.contains('hidden') ? '🔍 FILTROS' : '✕ CERRAR';
+        toggleBtn.innerHTML = filterPanel.classList.contains('hidden') ? '☰' : '✕';
     });
     document.body.appendChild(toggleBtn);
     
@@ -423,7 +424,7 @@ function filterFraudData(data, filters) {
 function recalculateAggregations(data) {
     const aggregated = { ...data };
     
-    // Resetear contadores
+    // Resetear contadores con nombres correctos de campos
     aggregated.zonas = {};
     aggregated.ciudades = {};
     aggregated.tecnicos = {};
@@ -431,7 +432,9 @@ function recalculateAggregations(data) {
     aggregated.companias = {};
     aggregated.nodos = {};
     aggregated.tipo_red = {};
-    aggregated.canales = {};
+    aggregated.canal_principal = {}; // ✓ Nombre correcto
+    aggregated.canal_secundario = {}; // ✓ Nombre correcto
+    aggregated.asesores = {}; // ✓ Agregado
     
     // Recalcular desde geo_data
     data.geo_data.forEach(caso => {
@@ -442,8 +445,14 @@ function recalculateAggregations(data) {
         aggregated.companias[caso.Compañía] = (aggregated.companias[caso.Compañía] || 0) + 1;
         aggregated.nodos[caso.Nodo] = (aggregated.nodos[caso.Nodo] || 0) + 1;
         aggregated.tipo_red[caso["Tipo de Red"]] = (aggregated.tipo_red[caso["Tipo de Red"]] || 0) + 1;
-        aggregated.canales[caso.CANAL] = (aggregated.canales[caso.CANAL] || 0) + 1;
+        aggregated.canal_principal[caso.CANAL] = (aggregated.canal_principal[caso.CANAL] || 0) + 1;
+        aggregated.canal_secundario[caso.CANAL2] = (aggregated.canal_secundario[caso.CANAL2] || 0) + 1;
+        aggregated.asesores[caso.Asesor] = (aggregated.asesores[caso.Asesor] || 0) + 1;
     });
+    
+    // Actualizar total_registros
+    aggregated.total_registros = data.geo_data.length;
+    aggregated.total_casos = data.geo_data.length; // Mantener compatibilidad
     
     return aggregated;
 }
@@ -452,25 +461,23 @@ function recalculateAggregations(data) {
 // ACTUALIZAR GRÁFICOS
 // ====================================
 function updateAllCharts(filteredData) {
-    console.log('[FILTERS] Actualizando gráficos con datos filtrados:', filteredData.total_casos, 'casos');
+    console.log('[FILTERS] 🔄 Actualizando dashboard con', filteredData.geo_data.length, 'casos filtrados');
     
-    // Actualizar variable global
-    fraudData = filteredData;
+    // CRÍTICO: Actualizar variable global fraudData
+    if (typeof window !== 'undefined') {
+        window.fraudData = filteredData;
+    }
     
-    // Destruir gráficos existentes primero
-    Object.keys(charts).forEach(key => {
-        if (charts[key] && typeof charts[key].destroy === 'function') {
-            charts[key].destroy();
-        }
-    });
-    charts = {};
-    
-    // Reinicializar cada gráfico con los datos filtrados
+    // Reinicializar cada gráfico (cada función maneja su propia destrucción)
     try {
-        // Actualizar métricas del ticker
-        if (typeof updateMetrics === 'function') updateMetrics(filteredData);
+        // 1. Actualizar métricas del ticker primero
+        if (typeof updateMetrics === 'function') {
+            console.log('[FILTERS] → Actualizando métricas...');
+            updateMetrics(filteredData);
+        }
         
-        // Reinicializar todos los gráficos
+        // 2. Reinicializar todos los gráficos
+        console.log('[FILTERS] → Reinicializando gráficos...');
         if (typeof initCanalChart === 'function') initCanalChart(filteredData);
         if (typeof initCanal2Chart === 'function') initCanal2Chart(filteredData);
         if (typeof initAsesorList === 'function') initAsesorList(filteredData);
@@ -483,9 +490,10 @@ function updateAllCharts(filteredData) {
         if (typeof initMatrixChart === 'function') initMatrixChart(filteredData);
         if (typeof initNodoChart === 'function') initNodoChart(filteredData);
         
-        console.log('[FILTERS] ✓ Gráficos actualizados correctamente');
+        console.log('[FILTERS] ✓ Dashboard actualizado exitosamente');
     } catch (error) {
-        console.error('[FILTERS] ✗ Error al actualizar gráficos:', error);
+        console.error('[FILTERS] ✗ ERROR al actualizar dashboard:', error);
+        console.error(error.stack);
     }
 }
 

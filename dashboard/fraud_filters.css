@@ -46,31 +46,61 @@ body.fraud-theme .terminal-container.filters-hidden {
     transform: translateX(-100%);
 }
 
-/* Botón Toggle Flotante */
+/* Botón Toggle Flotante - Solo Icono Hamburger */
 .filter-toggle-btn {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 3000;
+    top: 50%;
+    left: 270px; /* Pegado al borde derecho del panel */
+    transform: translateY(-50%);
+    z-index: 3001;
+    width: 40px;
+    height: 50px;
     background: var(--alert-red);
     color: white;
     border: 2px solid var(--alert-red);
-    padding: 8px 16px;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
     font-family: 'Roboto Mono', monospace;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5);
-    transition: all 0.2s ease;
-    opacity: 0.9;
+    box-shadow: 4px 0 12px rgba(220, 38, 38, 0.6);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.95;
+    line-height: 1;
 }
 
 .filter-toggle-btn:hover {
     background: #ff4444;
-    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.7);
+    box-shadow: 6px 0 16px rgba(220, 38, 38, 0.8);
     opacity: 1;
-    transform: translateY(-2px);
+    transform: translateY(-50%) translateX(3px);
+}
+
+/* Cuando el panel está oculto, el botón se mueve a la izquierda */
+body.fraud-theme .terminal-container.filters-hidden ~ .filter-toggle-btn,
+.filter-sidebar.hidden ~ .filter-toggle-btn {
+    left: 0;
+}
+
+/* Responsive - En mobile el botón queda arriba */
+@media (max-width: 768px) {
+    .filter-toggle-btn {
+        top: 10px;
+        left: 10px;
+        transform: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        border: 2px solid var(--alert-red);
+    }
+    
+    .filter-toggle-btn:hover {
+        transform: scale(1.05);
+    }
 }
 
 body.fraud-theme .terminal-container.filters-hidden .filter-toggle-btn {
