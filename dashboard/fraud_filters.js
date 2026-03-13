@@ -59,20 +59,35 @@ function initFilterPanel() {
     // Toggle panel en mobile
     const closeBtn = document.getElementById('closeFilters');
     const overlay = document.getElementById('filterOverlay');
+    const filterPanel = document.getElementById('filterPanel');
+    const container = document.querySelector('.terminal-container');
     
     if (closeBtn) {
         closeBtn.addEventListener('click', () => {
-            document.getElementById('filterPanel').classList.remove('visible');
+            filterPanel.classList.toggle('hidden');
+            container.classList.toggle('filters-hidden');
             if (overlay) overlay.classList.remove('visible');
         });
     }
     
     if (overlay) {
         overlay.addEventListener('click', () => {
-            document.getElementById('filterPanel').classList.remove('visible');
+            filterPanel.classList.remove('visible');
             overlay.classList.remove('visible');
         });
     }
+    
+    // Botón toggle desktop
+    const toggleBtn = document.createElement('button');
+    toggleBtn.id = 'toggleFilters';
+    toggleBtn.className = 'filter-toggle-btn';
+    toggleBtn.innerHTML = '🔍 FILTROS';
+    toggleBtn.addEventListener('click', () => {
+        filterPanel.classList.toggle('hidden');
+        container.classList.toggle('filters-hidden');
+        toggleBtn.textContent = filterPanel.classList.contains('hidden') ? '🔍 FILTROS' : '✕ CERRAR';
+    });
+    document.body.appendChild(toggleBtn);
     
     // Collapsible sections
     document.querySelectorAll('.section-header.clickable').forEach(header => {
@@ -81,7 +96,7 @@ function initFilterPanel() {
         });
     });
     
-    console.log('[FILTERS] Panel inicializado');
+    console.log('[FILTERS] Panel inicializado con toggle');
 }
 
 // ====================================
@@ -437,29 +452,40 @@ function recalculateAggregations(data) {
 // ACTUALIZAR GRÁFICOS
 // ====================================
 function updateAllCharts(filteredData) {
-    console.log('[FILTERS] Actualizando gráficos con datos filtrados');
+    console.log('[FILTERS] Actualizando gráficos con datos filtrados:', filteredData.total_casos, 'casos');
     
     // Actualizar variable global
     fraudData = filteredData;
     
+    // Destruir gráficos existentes primero
+    Object.keys(charts).forEach(key => {
+        if (charts[key] && typeof charts[key].destroy === 'function') {
+            charts[key].destroy();
+        }
+    });
+    charts = {};
+    
     // Reinicializar cada gráfico con los datos filtrados
     try {
-        if (typeof initMapChart === 'function') initMapChart(filteredData);
+        // Actualizar métricas del ticker
+        if (typeof updateMetrics === 'function') updateMetrics(filteredData);
+        
+        // Reinicializar todos los gráficos
         if (typeof initCanalChart === 'function') initCanalChart(filteredData);
-        if (typeof initCanalChartBar === 'function') initCanalChartBar(filteredData);
-        if (typeof initCanalChartDoughnut === 'function') initCanalChartDoughnut(filteredData);
-        if (typeof initCanalChartLine === 'function') initCanalChartLine(filteredData);
         if (typeof initCanal2Chart === 'function') initCanal2Chart(filteredData);
+        if (typeof initAsesorList === 'function') initAsesorList(filteredData);
+        if (typeof initZonaChart === 'function') initZonaChart(filteredData);
+        if (typeof initRazonChart === 'function') initRazonChart(filteredData);
+        if (typeof initRegionalChart === 'function') initRegionalChart(filteredData);
+        if (typeof initGeoHeatmap === 'function') initGeoHeatmap(filteredData);
         if (typeof initAliadoChart === 'function') initAliadoChart(filteredData);
         if (typeof initTecnicoChart === 'function') initTecnicoChart(filteredData);
-        if (typeof initNodoChart === 'function') initNodoChart(filteredData);
         if (typeof initMatrixChart === 'function') initMatrixChart(filteredData);
-        if (typeof updateAsesorList === 'function') updateAsesorList(filteredData);
-        if (typeof updateTickerMetrics === 'function') updateTickerMetrics(filteredData);
+        if (typeof initNodoChart === 'function') initNodoChart(filteredData);
         
-        console.log('[FILTERS] Gráficos actualizados correctamente');
+        console.log('[FILTERS] ✓ Gráficos actualizados correctamente');
     } catch (error) {
-        console.error('[FILTERS] Error al actualizar gráficos:', error);
+        console.error('[FILTERS] ✗ Error al actualizar gráficos:', error);
     }
 }
 

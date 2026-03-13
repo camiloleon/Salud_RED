@@ -1705,6 +1705,11 @@ function updateMetrics(data) {
 // 1. CANAL CHARTS (Matriz 2x2)
 // ===================================
 function initCanalChart(data) {
+    // Destruir gráficos existentes antes de recrear
+    if (charts.canalBar) { charts.canalBar.destroy(); delete charts.canalBar; }
+    if (charts.canalDoughnut) { charts.canalDoughnut.destroy(); delete charts.canalDoughnut; }
+    if (charts.canalLine) { charts.canalLine.destroy(); delete charts.canalLine; }
+    
     const sortedCanales = Object.entries(data.canal_principal).sort((a, b) => b[1] - a[1]);
     const labels = sortedCanales.map(item => item[0]);
     const values = sortedCanales.map(item => item[1]);
@@ -1998,6 +2003,9 @@ function initAsesorList(data) {
 // 4. CIUDAD CHART (DistribuciÃ³n por Ciudad)
 // ===================================
 function initZonaChart(data) {
+    // Destruir gráfico existente
+    if (charts.zona) { charts.zona.destroy(); delete charts.zona; }
+    
     const ctx = document.getElementById('zonaChart');
     if (!ctx) return;
     
@@ -2089,6 +2097,9 @@ function initZonaChart(data) {
 // 5. TIPO DE RED CHART (antes Razon)
 // ===================================
 function initRazonChart(data) {
+    // Destruir gráfico existente
+    if (charts.razon) { charts.razon.destroy(); delete charts.razon; }
+    
     const ctx = document.getElementById('razonChart');
     if (!ctx) return;
     
@@ -2141,6 +2152,9 @@ function initRazonChart(data) {
 // 6. TOP CIUDADES CHART (antes Regional)
 // ===================================
 function initRegionalChart(data) {
+    // Destruir gráfico existente
+    if (charts.regional) { charts.regional.destroy(); delete charts.regional; }
+    
     const ctx = document.getElementById('regionalChart');
     if (!ctx) return;
     
@@ -2180,6 +2194,12 @@ function initRegionalChart(data) {
 // 7. GEO MAP - MAPA POR CIUDAD CON COLORES POR CANAL
 // ===================================
 function initGeoHeatmap(data) {
+    // Destruir mapa existente
+    if (charts.geoHeatmap) { 
+        charts.geoHeatmap.remove(); 
+        delete charts.geoHeatmap; 
+    }
+    
     const mapContainer = document.getElementById('geoHeatmap');
     if (!mapContainer) return;
     
@@ -2433,6 +2453,9 @@ function initGeoHeatmap(data) {
 // 8. ANALISIS POR ALIADO
 // ===================================
 function initAliadoChart(data) {
+    // Destruir gráfico existente
+    if (charts.aliado) { charts.aliado.destroy(); delete charts.aliado; }
+    
     const ctx = document.getElementById('aliadoChart');
     if (!ctx) return;
     
@@ -2519,6 +2542,9 @@ function initAliadoChart(data) {
 // 9. ANALISIS POR TECNICO (Top 10)
 // ===================================
 function initTecnicoChart(data) {
+    // Destruir gráfico existente
+    if (charts.tecnico) { charts.tecnico.destroy(); delete charts.tecnico; }
+    
     const ctx = document.getElementById('tecnicoChart');
     if (!ctx) return;
     
@@ -2597,6 +2623,9 @@ function initTecnicoChart(data) {
 // 11. GRAFICO DE NODOS (Top 20)
 // ===================================
 function initNodoChart(data) {
+    // Destruir gráfico existente
+    if (charts.nodo) { charts.nodo.destroy(); delete charts.nodo; }
+    
     const ctx = document.getElementById('nodoChart');
     if (!ctx) return;
     
@@ -2674,6 +2703,9 @@ function initNodoChart(data) {
 // 12. MATRIZ DE RIESGO: CANAL × CIUDAD
 // ===================================
 function initMatrixChart(data) {
+    // Destruir gráfico existente
+    if (charts.matrix) { charts.matrix.destroy(); delete charts.matrix; }
+    
     const ctx = document.getElementById('matrixChart');
     if (!ctx) return;
     
