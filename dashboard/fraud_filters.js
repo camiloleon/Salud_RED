@@ -447,7 +447,7 @@ function recalculateAggregations(data) {
         aggregated.tipo_red[caso["Tipo de Red"]] = (aggregated.tipo_red[caso["Tipo de Red"]] || 0) + 1;
         aggregated.canal_principal[caso.CANAL] = (aggregated.canal_principal[caso.CANAL] || 0) + 1;
         aggregated.canal_secundario[caso.CANAL2] = (aggregated.canal_secundario[caso.CANAL2] || 0) + 1;
-        aggregated.asesores[caso.Asesor] = (aggregated.asesores[caso.Asesor] || 0) + 1;
+        aggregated.asesores[caso["Asesor comercial"]] = (aggregated.asesores[caso["Asesor comercial"]] || 0) + 1;
     });
     
     // Actualizar total_registros
