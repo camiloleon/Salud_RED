@@ -4812,6 +4812,18 @@ function initFraudFeed(data) {
 }
 
 // ===================================
+// HELPER FUNCTIONS
+// ===================================
+function updateElementById(elementId, value) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.textContent = value;
+    } else {
+        console.warn(`Element with ID '${elementId}' not found`);
+    }
+}
+
+// ===================================
 // TERMINAL CLOCK
 // ===================================
 function updateClock() {
@@ -4872,7 +4884,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     initNodoChart(data);
     initTablaCasosCriticos(data);
     initMatrixChart(data);
-    initNodoChart(data);
     // initFraudFeed(data); // Eliminado: sección de alertas en tiempo real
     
     // Start timers
