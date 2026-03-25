@@ -306,6 +306,11 @@
             </div>
             <span class="ticker-separator">|</span>
             <div class="ticker-item">
+                <div class="ticker-label">TASA CONFIRMACIÓN</div>
+                <div class="ticker-value" id="tasaConfirmacionTicker">--%</div>
+            </div>
+            <span class="ticker-separator">|</span>
+            <div class="ticker-item">
                 <div class="ticker-label">ÚLTIMA ACTUALIZACIÓN</div>
                 <div class="ticker-value" id="lastUpdate">--:--</div>
             </div>
@@ -372,16 +377,6 @@
                 </div>
             </div>
 
-            <!-- Ciudades Chart -->
-            <div class="chart-panel">
-                <div class="panel-header">
-                    <h3>🏙️ DISTRIBUCIÓN POR CIUDAD</h3>
-                </div>
-                <div class="chart-body">
-                    <canvas id="zonaChart"></canvas>
-                </div>
-            </div>
-
             <!-- Tipo de Red Chart -->
             <div class="chart-panel">
                 <div class="panel-header">
@@ -392,13 +387,27 @@
                 </div>
             </div>
 
-            <!-- Top Ciudades Chart -->
+            <!-- Embudo de Confirmación -->
             <div class="chart-panel">
                 <div class="panel-header">
-                    <h3>🏢 TOP CIUDADES</h3>
+                    <h3>🎯 EMBUDO DE CONFIRMACIÓN</h3>
                 </div>
                 <div class="chart-body">
-                    <canvas id="regionalChart"></canvas>
+                    <canvas id="embudoChart"></canvas>
+                </div>
+                <div class="chart-footer">
+                    <div class="chart-stat">
+                        <div class="stat-label">TASA CONFIRMACIÓN</div>
+                        <div class="stat-value" id="tasaConfirmacion">--%</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">SIN CONTACTO</div>
+                        <div class="stat-value" id="sinContacto">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">CONFIRMADOS</div>
+                        <div class="stat-value" id="confirmadosTotal">--</div>
+                    </div>
                 </div>
             </div>
 
@@ -437,6 +446,54 @@
                 </div>
             </div>
 
+            <!-- Matriz Aliado vs SLA -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h3>⚠️ MATRIZ ALIADO × SLA</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="matrizSlaChart"></canvas>
+                </div>
+                <div class="chart-footer">
+                    <div class="chart-stat">
+                        <div class="stat-label">INCUMPLIMIENTOS</div>
+                        <div class="stat-value alert" id="totalIncumplimientos">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">CUMPLIMIENTO</div>
+                        <div class="stat-value positive" id="totalCumplimiento">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">TASA SLA</div>
+                        <div class="stat-value" id="tasaSla">--%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Distribución de Reprogramaciones -->
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h3>🔄 REPROGRAMACIONES POR ALIADO</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas id="reprogramacionesChart"></canvas>
+                </div>
+                <div class="chart-footer">
+                    <div class="chart-stat">
+                        <div class="stat-label">CON REPROG.</div>
+                        <div class="stat-value warning" id="conReprog">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">SIN REPROG.</div>
+                        <div class="stat-value" id="sinReprog">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">TASA REPROG.</div>
+                        <div class="stat-value" id="tasaReprog">--%</div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Analisis por Tecnico (Top 10) - IZQUIERDA ARRIBA -->
             <div class="chart-panel" style="grid-column: 1 / 2; min-width: 0;">
                 <div class="panel-header">
@@ -464,6 +521,54 @@
                 </div>
                 <div class="chart-body">
                     <canvas id="nodoChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Tabla de Casos Críticos -->
+            <div class="chart-panel wide" style="grid-column: 1 / -1;">
+                <div class="panel-header">
+                    <h3>🚨 CASOS CRÍTICOS - REQUIEREN ATENCIÓN INMEDIATA</h3>
+                    <div class="chart-controls">
+                        <span style="font-size: 11px; color: #9ca3af;">Filtros: SLA Incumplimiento | Sin Contacto | Con Reprogramación</span>
+                    </div>
+                </div>
+                <div class="chart-body" style="overflow-x: auto;">
+                    <table id="tablaCasosCriticos" style="width: 100%; color: #e5e7eb; font-family: 'Roboto Mono', monospace; font-size: 11px; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: rgba(255, 255, 255, 0.05); border-bottom: 2px solid #ef4444;">
+                                <th style="padding: 8px; text-align: left;">ORDEN</th>
+                                <th style="padding: 8px; text-align: left;">FECHA</th>
+                                <th style="padding: 8px; text-align: left;">CIUDAD</th>
+                                <th style="padding: 8px; text-align: left;">ALIADO</th>
+                                <th style="padding: 8px; text-align: left;">ESTADO SLA</th>
+                                <th style="padding: 8px; text-align: left;">CONFIRMACIÓN</th>
+                                <th style="padding: 8px; text-align: left;">REPROG.</th>
+                                <th style="padding: 8px; text-align: left;">CANAL</th>
+                                <th style="padding: 8px; text-align: left;">ASESOR</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaCasosCriticosBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="chart-footer">
+                    <div class="chart-stat">
+                        <div class="stat-label">CASOS CRÍTICOS</div>
+                        <div class="stat-value alert" id="totalCasosCriticos">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">SLA INCUMPLIDOS</div>
+                        <div class="stat-value alert" id="criticosSla">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">SIN CONTACTO</div>
+                        <div class="stat-value warning" id="criticosSinContacto">--</div>
+                    </div>
+                    <div class="chart-stat">
+                        <div class="stat-label">REPROGRAMADOS</div>
+                        <div class="stat-value warning" id="criticosReprog">--</div>
+                    </div>
                 </div>
             </div>
         </div>
