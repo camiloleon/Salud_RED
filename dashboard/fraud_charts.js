@@ -3632,6 +3632,14 @@ function initEmbudoConfirmacion(data) {
         options: {
             ...COMMON_OPTIONS,
             indexAxis: 'y',
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10
+                }
+            },
             plugins: {
                 ...COMMON_OPTIONS.plugins,
                 legend: {
@@ -3651,7 +3659,7 @@ function initEmbudoConfirmacion(data) {
                     display: true,
                     color: '#ffffff',
                     font: {
-                        size: 12,
+                        size: 11,
                         weight: 'bold',
                         family: 'Roboto Mono, monospace'
                     },
@@ -3675,6 +3683,13 @@ function initEmbudoConfirmacion(data) {
                     ...COMMON_OPTIONS.scales.y,
                     grid: {
                         display: false
+                    },
+                    ticks: {
+                        ...COMMON_OPTIONS.scales.y.ticks,
+                        autoSkip: false,
+                        font: {
+                            size: 10
+                        }
                     }
                 }
             }
