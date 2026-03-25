@@ -3745,6 +3745,13 @@ function initGeoHeatmap(data) {
         charts.geoHeatmap.remove(); 
         delete charts.geoHeatmap; 
     }
+
+    if (typeof L === 'undefined') {
+        console.warn('Leaflet no está disponible, se omite inicialización del mapa');
+        updateElementById('geoTotal', (data.geo_data || []).length);
+        updateElementById('geoHotspot', '--');
+        return;
+    }
     
     const mapContainer = document.getElementById('geoHeatmap');
     if (!mapContainer) return;
@@ -3774,7 +3781,8 @@ function initGeoHeatmap(data) {
     // Contar fraudes por ciudad
     const fraudesPorCiudad = {};
     data.geo_data.forEach(item => {
-        const ciudad = item.Ciudad.toUpperCase();
+        const ciudadRaw = item.Ciudad || item.ciudad || 'N/A';
+        const ciudad = String(ciudadRaw).toUpperCase();
         if (!fraudesPorCiudad[ciudad]) {
             fraudesPorCiudad[ciudad] = [];
         }
@@ -3994,6 +4002,8 @@ function initGeoHeatmap(data) {
     const ciudadConMasCasos = Object.entries(fraudesPorCiudad).sort((a, b) => b[1].length - a[1].length)[0];
     if (ciudadConMasCasos) {
         document.getElementById('geoHotspot').textContent = ciudadConMasCasos[0];
+    } else {
+        document.getElementById('geoHotspot').textContent = '--';
     }
 }
 // 8. ANALISIS POR ALIADO
@@ -4867,6 +4877,14 @@ function updateElementById(elementId, value) {
     }
 }
 
+function safeInitChart(name, initFn, data) {
+    try {
+        initFn(data);
+    } catch (error) {
+        console.error(`Error inicializando ${name}:`, error);
+    }
+}
+
 // ===================================
 // TERMINAL CLOCK
 // ===================================
@@ -4915,19 +4933,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     updateMetrics(data);
     
     // Initialize all charts
-    initCanalChart(data);
-    initCanal2Chart(data);
-    initAsesorList(data);
-    initRazonChart(data);
-    initEmbudoConfirmacion(data);
-    initGeoHeatmap(data);
-    initAliadoChart(data);
-    initMatrizSlaChart(data);
-    initReprogramacionesChart(data);
-    initTecnicoChart(data);
-    initNodoChart(data);
-    initTablaCasosCriticos(data);
-    initMatrixChart(data);
+    safeInitChart('CanalChart', initCanalChart, data);
+    safeInitChart('Canal2Chart', initCanal2Chart, data);
+    safeInitChart('AsesorList', initAsesorList, data);
+    safeInitChart('RazonChart', initRazonChart, data);
+    safeInitChart('EmbudoConfirmacion', initEmbudoConfirmacion, data);
+    safeInitChart('GeoHeatmap', initGeoHeatmap, data);
+    safeInitChart('AliadoChart', initAliadoChart, data);
+    safeInitChart('MatrizSlaChart', initMatrizSlaChart, data);
+    safeInitChart('ReprogramacionesChart', initReprogramacionesChart, data);
+    safeInitChart('TecnicoChart', initTecnicoChart, data);
+    safeInitChart('NodoChart', initNodoChart, data);
+    safeInitChart('TablaCasosCriticos', initTablaCasosCriticos, data);
+    safeInitChart('MatrixChart', initMatrixChart, data);
     // initFraudFeed(data); // Eliminado: sección de alertas en tiempo real
     
     // Start timers
