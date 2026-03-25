@@ -3144,6 +3144,31 @@ async function loadFraudData() {
     try {
         // Usar datos embebidos directamente (sin fetch)
         fraudData = EMBEDDED_FRAUD_DATA;
+
+        // Normalizar registros para compatibilidad (camel/caps y minúsculas)
+        fraudData.geo_data = (fraudData.geo_data || []).map(item => {
+            const ciudad = item.Ciudad || item.ciudad || 'N/A';
+            const canal = item.CANAL || item.canal || 'N/A';
+            const asesor = item['Asesor comercial'] || item.asesor || 'N/A';
+            const fecha = item.Fecha || item.fecha || 'N/A';
+            const zona = item.Zona || item.zona || ciudad;
+            const idAliado = item['ID Aliado'] || item.id_aliado || item.idAliado || '';
+
+            return {
+                ...item,
+                Ciudad: ciudad,
+                ciudad,
+                CANAL: canal,
+                canal,
+                Fecha: fecha,
+                fecha,
+                Zona: zona,
+                zona,
+                'Asesor comercial': asesor,
+                asesor,
+                'ID Aliado': idAliado
+            };
+        });
         
         // Hacer disponible globalmente para filtros
         if (typeof window !== 'undefined') {
@@ -3166,7 +3191,7 @@ async function loadFraudData() {
         };
         const companias = {};
         fraudData.geo_data.forEach(item => {
-            const nombreCompania = companiaMap[item['ID Aliado']] || 'Desconocida';
+            const nombreCompania = item.aliado || companiaMap[item['ID Aliado']] || 'Desconocida';
             companias[nombreCompania] = (companias[nombreCompania] || 0) + 1;
         });
         fraudData.companias = companias;
@@ -3182,7 +3207,8 @@ async function loadFraudData() {
 // UPDATE METRICS
 // ===================================
 function updateMetrics(data) {
-    document.getElementById('totalFraude').textContent = data.total_registros;
+    const totalRegistros = data.total_registros || data.total_casos || (data.geo_data ? data.geo_data.length : 0);
+    document.getElementById('totalFraude').textContent = totalRegistros;
     document.getElementById('fraudeChange').textContent = '+12%';
     document.getElementById('canalesTotal').textContent = Object.keys(data.canal_principal).length;
     document.getElementById('zonasRiesgo').textContent = Object.keys(data.ciudades).length;
@@ -3216,7 +3242,7 @@ function updateMetrics(data) {
     if (topCanal) {
         document.getElementById('topCanal').textContent = topCanal[0];
         document.getElementById('topCanalCasos').textContent = topCanal[1];
-        const pct = ((topCanal[1] / data.total_registros) * 100).toFixed(1);
+        const pct = totalRegistros > 0 ? ((topCanal[1] / totalRegistros) * 100).toFixed(1) : '0.0';
         document.getElementById('topCanalPct').textContent = pct + '%';
     }
     
@@ -3226,7 +3252,10 @@ function updateMetrics(data) {
     // Find hotspot (most common city)
     const cityCounts = {};
     data.geo_data.forEach(item => {
-        cityCounts[item.Ciudad] = (cityCounts[item.Ciudad] || 0) + 1;
+        const ciudad = item.Ciudad || item.ciudad;
+        if (ciudad) {
+            cityCounts[ciudad] = (cityCounts[ciudad] || 0) + 1;
+        }
     });
     const hotspot = Object.entries(cityCounts).sort((a, b) => b[1] - a[1])[0];
     if (hotspot) {
