@@ -3142,8 +3142,15 @@ const EMBEDDED_FRAUD_DATA = {
 // ===================================
 async function loadFraudData() {
     try {
-        // Usar datos embebidos directamente (sin fetch)
-        fraudData = EMBEDDED_FRAUD_DATA;
+        // Intentar cargar datos desde JSON externo
+        let response = await fetch('fraud_data.json');
+        if (!response.ok) {
+            // Si falla (por CORS/local), usar datos embebidos como fallback
+            console.warn('No se pudo cargar fraud_data.json, usando datos embebidos');
+            fraudData = EMBEDDED_FRAUD_DATA;
+        } else {
+            fraudData = await response.json();
+        }
 
         // Normalizar registros para compatibilidad (camel/caps y minúsculas)
         fraudData.geo_data = (fraudData.geo_data || []).map(item => {
@@ -3169,19 +3176,19 @@ async function loadFraudData() {
                 'ID Aliado': idAliado
             };
         });
-        
+
         // Hacer disponible globalmente para filtros
         if (typeof window !== 'undefined') {
             window.fraudData = fraudData;
         }
-        
+
         // Calcular ciudades dinámicamente desde geo_data
         const ciudades = {};
         fraudData.geo_data.forEach(item => {
             ciudades[item.Ciudad] = (ciudades[item.Ciudad] || 0) + 1;
         });
         fraudData.ciudades = ciudades;
-        
+
         // Calcular compañías desde ID Aliado
         // NOTA: TABASCO y CICSA son la misma compañía
         const companiaMap = {
@@ -3195,7 +3202,7 @@ async function loadFraudData() {
             companias[nombreCompania] = (companias[nombreCompania] || 0) + 1;
         });
         fraudData.companias = companias;
-        
+
         return fraudData;
     } catch (error) {
         console.error('Error loading fraud data:', error);
