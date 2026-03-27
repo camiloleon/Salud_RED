@@ -1,56 +1,4 @@
 {
-  "total_registros": 74,
-  "canal_principal": {
-    "AGENTES": 36,
-    "TELEFONICO VENTA": 20,
-    "CAV": 15,
-    "DIGITAL": 2,
-    "TELEFONICO SERVICIO": 1
-  },
-  "canal_secundario": {
-    "CALLE": 28,
-    "TMK OUT BOUND": 15,
-    "CAV": 15,
-    "PDV": 7,
-    "TMK IN BOUND": 5,
-    "ECOMMERCE ASISTIDO": 2,
-    "SAC": 1,
-    "EYN": 1
-  },
-  "asesores": {
-    "JOHANA ROSERO PERENGUE": 3,
-    "ANDRES MAURICIO MONTER": 2,
-    "GUZMAN VELA SEBASTIAN": 2,
-    "ARLEX ADEY PALACIOS LO": 2,
-    "ZUNIGA RIVERA ANGELICA": 2,
-    "OSCAR LEONARDO PARRADO": 2,
-    "MAESTRE BIRRIEL ELISA": 2,
-    "LUIS EDUARDO VILLAFANE": 2,
-    "SUAREZ RIVERA PAOLA AN": 2,
-    "BUITRAGO GIRALDO VALEN": 1,
-    "CASTILLO GARCIA JOHANN": 1,
-    "CARDONA ZAPATA LUZ ARG": 1,
-    "ARDILA VAZQUEZ ALIX AL": 1,
-    "AVILA ROMERO NILSE DIO": 1,
-    "ANGEL DUBAN MEDINA GUE": 1
-  },
-  "zonas": {
-    "507578": 22,
-    "508582": 11,
-    "507572": 10,
-    "508584": 9,
-    "506564": 8,
-    "506561": 8,
-    "507573": 6
-  },
-  "razones": {
-    "UNIDAD POSIBLE FRAUDE": 74
-  },
-  "regionales": {
-    "RVA": 53,
-    "RCE": 16,
-    "REC": 5
-  },
   "geo_data": [
     {
       "CANAL": "AGENTES",
@@ -723,6 +671,168 @@
       "Razón": "UNIDAD POSIBLE FRAUDE"
     }
   ],
+  "total_casos": 74,
+  "total_registros": 74,
+  "confirmados": 41,
+  "tasa_confirmacion": 55.4,
+  "no_confirmados": 33,
+  "en_cumplimiento_sla": 52,
+  "tasa_cumplimiento_sla": 70.3,
+  "en_incumplimiento_sla": 10,
+  "con_reprogramaciones": 22,
+  "tasa_reprogramacion": 29.7,
+  "sin_reprogramaciones": 52,
+  "aliados": {
+    "CONECTAR TV S.A.S.": 39,
+    "TABASCO OC, LLC. SUCURSAL COLOMBIA": 22,
+    "CICSA COLOMBIA S.A.": 13
+  },
+  "companias": {
+    "CONECTAR TV S.A.S.": 39,
+    "TABASCO OC, LLC. SUCURSAL COLOMBIA": 22,
+    "CICSA COLOMBIA S.A.": 13
+  },
+  "canal_principal": {
+    "AGENTES": 36,
+    "TELEFONICO VENTA": 20,
+    "CAV": 15,
+    "DIGITAL": 2,
+    "TELEFONICO SERVICIO": 1
+  },
+  "canal_secundario": {
+    "PDV": 7,
+    "TMK OUT BOUND": 15,
+    "CALLE": 28,
+    "CAV": 15,
+    "ECOMMERCE ASISTIDO": 2,
+    "SAC": 1,
+    "TMK IN BOUND": 5,
+    "EYN": 1
+  },
+  "ciudades": {
+    "PALMIRA": 9,
+    "POPAYAN": 10,
+    "CALI": 20,
+    "NEIVA": 6,
+    "BUGA": 2,
+    "FLANDES": 5,
+    "CARTAGO": 5,
+    "FLORIDA": 1,
+    "SEVILLA": 2,
+    "PASTO": 4,
+    "ESPINAL": 2,
+    "FLORENCIA": 2,
+    "CANDELARIA": 2,
+    "IPIALES": 2,
+    "CAICEDONIA": 1,
+    "IBAGUE": 1
+  },
+  "tipo_red": {
+    "Masivo Bidireccional": 41,
+    "FTTH": 29,
+    "Pymes": 4
+  },
+  "asesores": {
+    "ANDREA CATALINA DE LA": 1,
+    "ANDRES MAURICIO MONTER": 2,
+    "ANGEL DUBAN MEDINA GUE": 1,
+    "ARDILA VAZQUEZ ALIX AL": 1,
+    "ARLEX ADEY PALACIOS LO": 2,
+    "AVILA ROMERO NILSE DIO": 1,
+    "BARRERA RODRIGUEZ MAN": 1,
+    "BOLIVAR PULGARIN YESSI": 1,
+    "BUITRAGO GIRALDO VALEN": 1,
+    "CARDONA ZAPATA LUZ ARG": 1,
+    "CASTILLO GARCIA JOHANN": 1,
+    "CHITOYEISON EDUARDO": 1,
+    "DIEGO ANDRES SOTO MART": 1,
+    "EDWIN ANDRES HERNANDEZ": 1,
+    "ERIKA PAOLA ESPINOSA V": 1,
+    "ESTEBAN CALLE CHAVARRI": 1,
+    "FAVIO VEGA DOCTOR": 1,
+    "FLOREZ CARLOS ARTURO": 1,
+    "GOMEZ VILLANUEVA HAROL": 1,
+    "GONZALEZ CESPEDES JUAN": 1,
+    "GUZMAN VELA SEBASTIAN": 2,
+    "HAIDER DAVID MEDINA CA": 1,
+    "HERNANDEZ PERALTA JONA": 1,
+    "HOMEN BURBANO CLAUDIA": 1,
+    "JAIR PALACIO NIEVES": 1,
+    "JANIRIA BERNAL JIMENEZ": 1,
+    "JEFERSON RODRIGUEZ ROM": 1,
+    "JHOANA PAOLA VARON BE": 1,
+    "JHONN JAIRO ORTEGA PER": 1,
+    "JOAN MAURICIO GARCIA Q": 1,
+    "JOHANA ROSERO PERENGUE": 3,
+    "JOSE LUIS OLARTE NOREN": 1,
+    "KATHERIN DAZA IBARRA": 1,
+    "LEON RIANO JOHAN SAMUE": 1,
+    "LUIS ADOLFO VALENCIA R": 1,
+    "LUIS EDUARDO VILLAFANE": 2,
+    "MAESTRE BIRRIEL ELISA": 2,
+    "MARIA CAROLINA PENA RA": 1,
+    "MIGUEL ANGEL LOPEZ ARE": 1,
+    "MILLER SANTACRUZ NARVA": 1,
+    "MINGAN PERALTA ESTEFAN": 1,
+    "MORALES BRITNEY DAYAN": 1,
+    "MORALES HERNANDEZ MONI": 1,
+    "MOSQUERA AREVALO JOHN": 1,
+    "ONATE MEJIA JESUS ALEX": 1,
+    "OSCAR LEONARDO PARRADO": 2,
+    "PENA MORENO DANIEL FEL": 1,
+    "POLANIA MONTERO LUISA": 1,
+    "POTES BEDOYA LUZ AIDEE": 1,
+    "PULIDO RODRIGUEZ DANIE": 1,
+    "RODAS GIRALDO JHON ALE": 1,
+    "RODRIGUEZ HERRERA ANDR": 1,
+    "SALINAS MORENO MARIA F": 1,
+    "SANCHEZ CASTILLO MARY": 1,
+    "SANCHEZ CUENO LUZ DAR": 1,
+    "SERNA VELEZ ERNESTO": 1,
+    "SOELIA DE JESUS MONSAL": 1,
+    "SUAREZ RIVERA PAOLA AN": 2,
+    "TORRES JIMENEZ KATHERI": 1,
+    "TORRES PAEZ LAURA SOFI": 1,
+    "VELANDIA MORENO ANGIE": 1,
+    "YESSICA ALEJANDRA AYA": 1,
+    "ZULUAGA FAJARDO LOREN": 1,
+    "ZUNIGA RIVERA ANGELICA": 2
+  },
+  "tecnicos": {},
+  "nodos": {},
+  "zonas": {
+    "507578": 22,
+    "507572": 10,
+    "508584": 9,
+    "506564": 8,
+    "506561": 8,
+    "508582": 11,
+    "507573": 6
+  },
+  "regionales": {
+    "RVA": 53,
+    "RCE": 16,
+    "REC": 5
+  },
+  "confir_resultados": {
+    "CONFIRMADO": 23,
+    "": 28,
+    "NO CONTACTO": 11,
+    "ADELANTO": 11,
+    "REPROGRAMADA": 1
+  },
+  "estados_sla": {
+    "EN CUMPLIMIENTO": 52,
+    "EN INCUMPLIMIENTO": 10,
+    "NODATA": 12
+  },
+  "subtipos_orden": {
+    "Instalacion Basica Bi": 14,
+    "Instalacion Empaquetada Bi": 27,
+    "Instalacion FTTH_": 28,
+    "Instalacion Pymes": 4,
+    "BROWNFIELD": 1
+  },
   "fecha_inicio": "2026-02-10",
   "fecha_fin": "2026-03-09"
 }
