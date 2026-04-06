@@ -19,7 +19,7 @@ let filterState = {
     tipoRed: null,
     nodos: [],
     active: false,
-    resultCount: 74
+    resultCount: 0
 };
 
 // Datos originales sin filtrar
@@ -442,7 +442,7 @@ function recalculateAggregations(data) {
         aggregated.ciudades[caso.Ciudad] = (aggregated.ciudades[caso.Ciudad] || 0) + 1;
         aggregated.tecnicos[caso.Técnico] = (aggregated.tecnicos[caso.Técnico] || 0) + 1;
         aggregated.aliados[caso["ID Aliado"]] = (aggregated.aliados[caso["ID Aliado"]] || 0) + 1;
-        aggregated.companias[caso.Compañía] = (aggregated.companias[caso.Compañía] || 0) + 1;
+        aggregated.companias[caso.Compañia] = (aggregated.companias[caso.Compañia] || 0) + 1;
         aggregated.nodos[caso.Nodo] = (aggregated.nodos[caso.Nodo] || 0) + 1;
         aggregated.tipo_red[caso["Tipo de Red"]] = (aggregated.tipo_red[caso["Tipo de Red"]] || 0) + 1;
         aggregated.canal_principal[caso.CANAL] = (aggregated.canal_principal[caso.CANAL] || 0) + 1;
@@ -513,7 +513,7 @@ function resetFilters() {
         tipoRed: null,
         nodos: [],
         active: false,
-        resultCount: 74
+        resultCount: (originalData && originalData.geo_data) ? originalData.geo_data.length : 0
     };
     
     // Resetear UI
