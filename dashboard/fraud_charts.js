@@ -3164,6 +3164,7 @@ async function loadFraudData() {
             const zona = item.Zona || item.zona || ciudad;
             const idAliado = item['ID Aliado'] || item.id_aliado || item.idAliado || '';
 
+            const tipoRed = item['Tipo de Red'] || item.tipo_red || '';
             return {
                 ...item,
                 Ciudad: ciudad,
@@ -3176,7 +3177,9 @@ async function loadFraudData() {
                 zona,
                 'Asesor comercial': asesor,
                 asesor,
-                'ID Aliado': idAliado
+                'ID Aliado': idAliado,
+                'Tipo de Red': tipoRed,
+                tipo_red: tipoRed
             };
         });
 
@@ -3205,6 +3208,14 @@ async function loadFraudData() {
             companias[nombreCompania] = (companias[nombreCompania] || 0) + 1;
         });
         fraudData.companias = companias;
+
+        // Calcular tipo_red dinámicamente desde geo_data
+        const tipoRedAgg = {};
+        fraudData.geo_data.forEach(item => {
+            const tr = item.tipo_red || item['Tipo de Red'] || 'Desconocido';
+            tipoRedAgg[tr] = (tipoRedAgg[tr] || 0) + 1;
+        });
+        fraudData.tipo_red = tipoRedAgg;
 
         return fraudData;
     } catch (error) {
