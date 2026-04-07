@@ -3143,7 +3143,7 @@ const EMBEDDED_FRAUD_DATA = {
 async function loadFraudData() {
     try {
         // Intentar cargar datos desde JSON externo
-        let response = await fetch('fraud_data.json');
+        let response = await fetch('fraud_data.json?v=' + Date.now(), { cache: 'no-store' });
         if (!response.ok) {
             // Si falla (por CORS/local), usar datos embebidos como fallback
             console.warn('No se pudo cargar fraud_data.json, usando datos embebidos');
