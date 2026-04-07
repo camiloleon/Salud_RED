@@ -4964,6 +4964,46 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log('Fraud Analytics Terminal initialized successfully');
 });
 
+// ===================================
+// REFRESH / RELOAD DATA
+// ===================================
+async function refreshDashboard() {
+    const btn = document.getElementById('refreshBtn');
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = '⟳ Actualizando...';
+    }
+    try {
+        // Reusar loadFraudData (incluye normalización y cache-bust via ?_ no necesario pues el browser lo cachea igual)
+        const data = await loadFraudData();
+        if (!data) throw new Error('loadFraudData returned null');
+
+        // Redibujar todo
+        updateMetrics(data);
+        safeInitChart('CanalChart', initCanalChart, data);
+        safeInitChart('Canal2Chart', initCanal2Chart, data);
+        safeInitChart('AsesorList', initAsesorList, data);
+        safeInitChart('RazonChart', initRazonChart, data);
+        safeInitChart('EmbudoConfirmacion', initEmbudoConfirmacion, data);
+        safeInitChart('GeoHeatmap', initGeoHeatmap, data);
+        safeInitChart('AliadoChart', initAliadoChart, data);
+        safeInitChart('MatrizSlaChart', initMatrizSlaChart, data);
+        safeInitChart('ReprogramacionesChart', initReprogramacionesChart, data);
+        safeInitChart('TecnicoChart', initTecnicoChart, data);
+        safeInitChart('NodoChart', initNodoChart, data);
+        safeInitChart('TablaCasosCriticos', initTablaCasosCriticos, data);
+        safeInitChart('MatrixChart', initMatrixChart, data);
+
+        console.log('Dashboard refreshed:', data.total_casos, 'casos');
+        if (btn) btn.textContent = '✓ Actualizado';
+        setTimeout(() => { if (btn) { btn.textContent = '⟳ Actualizar'; btn.disabled = false; } }, 2000);
+    } catch (e) {
+        console.error('Error al actualizar:', e);
+        if (btn) { btn.textContent = '✗ Error'; btn.disabled = false; }
+        setTimeout(() => { if (btn) btn.textContent = '⟳ Actualizar'; }, 2000);
+    }
+}
+
 
 
 
