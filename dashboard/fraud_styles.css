@@ -484,13 +484,16 @@ body.fraud-theme {
 }
 
 .chart-body {
-    flex: 1;
     padding: var(--gap-lg);
     position: relative;
     min-height: 200px;
+    overflow: hidden;
 }
 
 .chart-body canvas {
+    position: absolute !important;
+    top: 0;
+    left: 0;
     width: 100% !important;
     height: 100% !important;
 }
