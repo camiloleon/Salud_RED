@@ -31,9 +31,16 @@ let isFilteringEnabled = false;
 // ====================================
 document.addEventListener('DOMContentLoaded', function() {
     console.log('[FILTERS] Iniciando sistema de filtros...');
-    
-    // Guardar datos originales
-    if (typeof fraudData !== 'undefined') {
+
+    // Escuchar el evento de datos listos (loadFraudData es async, no se puede capturar en DOMContentLoaded)
+    window.addEventListener('fraudDataReady', function(e) {
+        originalData = JSON.parse(JSON.stringify(e.detail));
+        console.log('[FILTERS] Datos originales listos:', originalData.total_casos, 'casos');
+        updateFilteredCount(originalData.geo_data.length);
+    });
+
+    // Guardar datos originales si ya estuvieran disponibles (EMBEDDED_FRAUD_DATA fallback)
+    if (typeof fraudData !== 'undefined' && fraudData && fraudData.geo_data) {
         originalData = JSON.parse(JSON.stringify(fraudData));
         console.log('[FILTERS] Datos originales guardados:', originalData.total_casos, 'casos');
     }
@@ -568,9 +575,8 @@ function saveFilterView() {
 // ====================================
 function updateFilterCounts() {
     if (!originalData) return;
-    
-    // Los contadores se actualizan dinámicamente al filtrar
-    console.log('[FILTERS] Contadores inicializados');
+    updateFilteredCount(originalData.geo_data.length);
+    console.log('[FILTERS] Contador inicializado:', originalData.geo_data.length);
 }
 
 function updateFilteredCount(count) {

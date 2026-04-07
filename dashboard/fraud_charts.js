@@ -4962,6 +4962,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     updatePerformance();
     
     console.log('Fraud Analytics Terminal initialized successfully');
+
+    // Notificar a fraud_filters.js que los datos están listos
+    window.dispatchEvent(new CustomEvent('fraudDataReady', { detail: data }));
 });
 
 // ===================================
@@ -4995,6 +4998,7 @@ async function refreshDashboard() {
         safeInitChart('MatrixChart', initMatrixChart, data);
 
         console.log('Dashboard refreshed:', data.total_casos, 'casos');
+        window.dispatchEvent(new CustomEvent('fraudDataReady', { detail: data }));
         if (btn) btn.textContent = '✓ Actualizado';
         setTimeout(() => { if (btn) { btn.textContent = '⟳ Actualizar'; btn.disabled = false; } }, 2000);
     } catch (e) {
