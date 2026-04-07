@@ -388,30 +388,6 @@
                 </div>
             </div>
 
-            <!-- Embudo de Confirmación -->
-            <div class="chart-panel">
-                <div class="panel-header">
-                    <h3>🎯 EMBUDO DE CONFIRMACIÓN</h3>
-                </div>
-                <div class="chart-body" style="height: 280px;">
-                    <canvas id="embudoChart"></canvas>
-                </div>
-                <div class="chart-footer">
-                    <div class="chart-stat">
-                        <div class="stat-label">TASA CONFIRMACIÓN</div>
-                        <div class="stat-value" id="tasaConfirmacion">--%</div>
-                    </div>
-                    <div class="chart-stat">
-                        <div class="stat-label">SIN CONTACTO</div>
-                        <div class="stat-value" id="sinContacto">--</div>
-                    </div>
-                    <div class="chart-stat">
-                        <div class="stat-label">CONFIRMADOS</div>
-                        <div class="stat-value" id="confirmadosTotal">--</div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Mapa Geográfico -->
             <div class="chart-panel wide">
                 <div class="panel-header">
@@ -545,5 +521,74 @@
 
     <script src="fraud_charts.js"></script>
     <script src="fraud_filters.js"></script>
+    <style>
+        .panel-actions { display: flex; gap: 6px; align-items: center; margin-left: auto; }
+        .panel-btn { background: none; border: 1px solid #374151; color: #9ca3af; width: 24px; height: 24px; border-radius: 3px; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+        .panel-btn:hover { border-color: #00ff41; color: #00ff41; }
+        .chart-panel.collapsed .chart-body, .chart-panel.collapsed .chart-footer { display: none; }
+        .chart-panel.collapsed { min-height: 0 !important; }
+        .chart-panel.maximized { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999; overflow: auto; background: #0a0a0a; border: 2px solid #ef4444 !important; box-shadow: 0 0 40px rgba(220,38,38,0.5); }
+        .chart-panel.maximized .chart-body { height: calc(100vh - 120px) !important; }
+        .panel-header { display: flex; align-items: center; }
+        .panel-header h3 { margin: 0; flex: 1; }
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Agregar botones a todos los panel-header
+        document.querySelectorAll('.chart-panel').forEach(function(panel) {
+            const header = panel.querySelector('.panel-header');
+            if (!header) return;
+            const actions = document.createElement('div');
+            actions.className = 'panel-actions';
+            // Boton colapsar
+            const collapseBtn = document.createElement('button');
+            collapseBtn.className = 'panel-btn collapse-btn';
+            collapseBtn.title = 'Colapsar / Expandir';
+            collapseBtn.textContent = '−';
+            collapseBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                panel.classList.remove('maximized');
+                panel.classList.toggle('collapsed');
+                collapseBtn.textContent = panel.classList.contains('collapsed') ? '+' : '−';
+                maxBtn.textContent = '⛶';
+            });
+            // Boton maximizar
+            const maxBtn = document.createElement('button');
+            maxBtn.className = 'panel-btn max-btn';
+            maxBtn.title = 'Maximizar / Restaurar';
+            maxBtn.textContent = '⛶';
+            maxBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const wasMax = panel.classList.contains('maximized');
+                // Cerrar cualquier otro maximizado
+                document.querySelectorAll('.chart-panel.maximized').forEach(p => {
+                    p.classList.remove('maximized');
+                    p.querySelector('.max-btn').textContent = '⛶';
+                });
+                if (!wasMax) {
+                    panel.classList.remove('collapsed');
+                    panel.classList.add('maximized');
+                    maxBtn.textContent = '✕';
+                    collapseBtn.textContent = '−';
+                    // Redibujar charts si existe
+                    window.dispatchEvent(new Event('resize'));
+                    setTimeout(() => window.dispatchEvent(new Event('resize')), 200);
+                }
+            });
+            actions.appendChild(collapseBtn);
+            actions.appendChild(maxBtn);
+            header.appendChild(actions);
+        });
+        // Cerrar maximizado con Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.chart-panel.maximized').forEach(p => {
+                    p.classList.remove('maximized');
+                    p.querySelector('.max-btn').textContent = '⛶';
+                });
+            }
+        });
+    });
+    </script>
 </body>
 </html>

@@ -4945,7 +4945,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     safeInitChart('Canal2Chart', initCanal2Chart, data);
     safeInitChart('AsesorList', initAsesorList, data);
     safeInitChart('RazonChart', initRazonChart, data);
-    safeInitChart('EmbudoConfirmacion', initEmbudoConfirmacion, data);
     safeInitChart('GeoHeatmap', initGeoHeatmap, data);
     safeInitChart('AliadoChart', initAliadoChart, data);
     safeInitChart('MatrizSlaChart', initMatrizSlaChart, data);
@@ -4988,7 +4987,6 @@ async function refreshDashboard() {
         safeInitChart('Canal2Chart', initCanal2Chart, data);
         safeInitChart('AsesorList', initAsesorList, data);
         safeInitChart('RazonChart', initRazonChart, data);
-        safeInitChart('EmbudoConfirmacion', initEmbudoConfirmacion, data);
         safeInitChart('GeoHeatmap', initGeoHeatmap, data);
         safeInitChart('AliadoChart', initAliadoChart, data);
         safeInitChart('MatrizSlaChart', initMatrizSlaChart, data);
