@@ -55,7 +55,7 @@ for idx, row in df.iterrows():
         # Geográfico
         'ciudad': str(row['Ciudad']),
         'nodo': str(row['Nodo']),
-        'zona': int(row['Zona']) if pd.notna(row['Zona']) else 0,
+        'zona': str(row['Zona']) if pd.notna(row['Zona']) else '',
         'regional': str(row['Regional']),
         'latitud': float(lat) if pd.notna(lat) else None,
         'longitud': float(lon) if pd.notna(lon) else None,
@@ -98,6 +98,21 @@ for idx, row in df.iterrows():
         'razon': str(row['Razón']),
         'estado': str(row['Estado']),
         'persona_confirma': str(row['Persona que Confirma']) if pd.notna(row['Persona que Confirma']) else '',
+
+        # Claves en formato original Excel (compatibilidad con dashboard JS y scripts Python)
+        'CANAL': str(row['CANAL']),
+        'CANAL2': str(row['CANAL2']),
+        'Ciudad': str(row['Ciudad']),
+        'Nodo': str(row['Nodo']),
+        'Zona': str(row['Zona']) if pd.notna(row['Zona']) else '',
+        'Técnico': str(row['Técnico']),
+        'Asesor comercial': str(row['Asesor comercial']),
+        'ID Aliado': str(row['ID Aliado']),
+        'Compañia': str(row['Compañia']),
+        'Razón': str(row['Razón']),
+        'Tipo de Red': str(row['Tipo de Red']),
+        'Coordenada X': float(lon) if pd.notna(lon) else None,
+        'Coordenada Y': float(lat) if pd.notna(lat) else None,
     }
     
     geo_data.append(record)
@@ -189,7 +204,7 @@ fraud_data = {
 }
 
 # Guardar en JSON
-output_file = 'fraud_data_completo.json'
+output_file = 'dashboard/fraud_data_updated.json'
 with open(output_file, 'w', encoding='utf-8') as f:
     json.dump(fraud_data, f, indent=2, ensure_ascii=False)
 

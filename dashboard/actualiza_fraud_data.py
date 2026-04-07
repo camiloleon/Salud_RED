@@ -32,10 +32,10 @@ canal_secundario = {}
 ciudades = {}
 asesores = {}
 for item in result.get('geo_data', []):
-    canal = item.get('CANAL', '')
-    canal2 = item.get('CANAL2', '')
-    ciudad = item.get('Ciudad', '')
-    asesor = item.get('Asesor comercial', '')
+    canal = item.get('CANAL', '') or item.get('canal', '')
+    canal2 = item.get('CANAL2', '') or item.get('canal2', '')
+    ciudad = item.get('Ciudad', '') or item.get('ciudad', '')
+    asesor = item.get('Asesor comercial', '') or item.get('asesor', '')
     if canal:
         canal_principal[canal] = canal_principal.get(canal, 0) + 1
     if canal2:
