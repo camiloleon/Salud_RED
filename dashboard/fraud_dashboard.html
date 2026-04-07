@@ -378,48 +378,57 @@
                 </div>
             </div>
 
-            <!-- Tipo de Red Chart -->
-            <div class="chart-panel">
-                <div class="panel-header">
-                    <h3>📡 TIPO DE RED</h3>
-                </div>
-                <div class="chart-body" style="height: 300px;">
-                    <canvas id="razonChart"></canvas>
-                </div>
-            </div>
+            <!-- Mapa Geográfico + Tipo de Red + Compañía en fila -->
+            <div style="grid-column: 1 / -1; display: flex; gap: 16px; align-items: stretch;">
 
-            <!-- Mapa Geográfico -->
-            <div class="chart-panel wide">
-                <div class="panel-header">
-                    <h3>🗺️ GEORREFERENCIACIÓN - MAPA DE FRAUDES</h3>
-                    <div class="chart-controls">
-                        <select class="terminal-select small" id="geoFilterCanal">
-                            <option value="all">TODOS LOS CANALES</option>
-                        </select>
+                <!-- Mapa (izquierda, grande) -->
+                <div class="chart-panel" style="flex: 3; min-width: 0;">
+                    <div class="panel-header">
+                        <h3>🗺️ GEORREFERENCIACIÓN - MAPA DE FRAUDES</h3>
+                        <div class="chart-controls">
+                            <select class="terminal-select small" id="geoFilterCanal">
+                                <option value="all">TODOS LOS CANALES</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-body" style="height: 500px;">
+                        <div id="geoHeatmap" style="height: 100%; width: 100%; border-radius: 4px;"></div>
+                    </div>
+                    <div class="chart-footer">
+                        <div class="chart-stat">
+                            <div class="stat-label">PUNTOS GEORREFERENCIADOS</div>
+                            <div class="stat-value" id="geoTotal">--</div>
+                        </div>
+                        <div class="chart-stat">
+                            <div class="stat-label">ZONA DE MAYOR CONCENTRACIÓN</div>
+                            <div class="stat-value" id="geoHotspot">--</div>
+                        </div>
                     </div>
                 </div>
-                <div class="chart-body" style="height: 500px;">
-                    <div id="geoHeatmap" style="height: 100%; width: 100%; border-radius: 4px;"></div>
-                </div>
-                <div class="chart-footer">
-                    <div class="chart-stat">
-                        <div class="stat-label">PUNTOS GEORREFERENCIADOS</div>
-                        <div class="stat-value" id="geoTotal">--</div>
-                    </div>
-                    <div class="chart-stat">
-                        <div class="stat-label">ZONA DE MAYOR CONCENTRACIÓN</div>
-                        <div class="stat-value" id="geoHotspot">--</div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Analisis por Aliado -->
-            <div class="chart-panel">
-                <div class="panel-header">
-                    <h3>🏢 ANÁLISIS POR COMPAÑÍA</h3>
-                </div>
-                <div class="chart-body" style="height: 300px;">
-                    <canvas id="aliadoChart"></canvas>
+                <!-- Columna derecha: Tipo de Red y Compañía apilados -->
+                <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 16px;">
+
+                    <!-- Tipo de Red -->
+                    <div class="chart-panel" style="flex: 1;">
+                        <div class="panel-header">
+                            <h3>📡 TIPO DE RED</h3>
+                        </div>
+                        <div class="chart-body" style="min-height: 220px; flex: 1;">
+                            <canvas id="razonChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Análisis por Compañía -->
+                    <div class="chart-panel" style="flex: 1;">
+                        <div class="panel-header">
+                            <h3>🏢 ANÁLISIS POR COMPAÑÍA</h3>
+                        </div>
+                        <div class="chart-body" style="min-height: 220px; flex: 1;">
+                            <canvas id="aliadoChart"></canvas>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

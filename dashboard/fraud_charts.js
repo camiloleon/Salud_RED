@@ -44,6 +44,9 @@ const COMMON_OPTIONS = {
                 padding: 12
             }
         },
+        datalabels: {
+            display: false
+        },
         tooltip: {
             backgroundColor: 'rgba(0, 0, 0, 0.9)',
             titleColor: '#ffffff',
