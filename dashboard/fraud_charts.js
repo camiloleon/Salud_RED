@@ -3606,7 +3606,12 @@ function initRazonChart(data) {
                 ...COMMON_OPTIONS.plugins,
                 legend: {
                     ...COMMON_OPTIONS.plugins.legend,
-                    position: 'right'
+                    position: 'bottom',
+                    labels: {
+                        color: '#e5e7eb',
+                        font: { family: "'Roboto Mono', monospace", size: 10 },
+                        padding: 8
+                    }
                 },
                 tooltip: {
                     ...COMMON_OPTIONS.plugins.tooltip,
@@ -4074,21 +4079,22 @@ function initAliadoChart(data) {
                 },
                 legend: {
                     display: true,
-                    position: 'right',
+                    position: 'bottom',
                     labels: {
-                        color: FRAUD_COLORS.textColor,
+                        color: '#e5e7eb',
                         font: {
                             family: "'Roboto Mono', monospace",
                             size: 10
                         },
-                        padding: 10,
+                        padding: 8,
                         generateLabels: function(chart) {
                             const data = chart.data;
                             return data.labels.map((label, i) => {
                                 const value = data.datasets[0].data[i];
                                 const pct = ((value / total) * 100).toFixed(1);
+                                const shortLabel = label.length > 14 ? label.substring(0, 13) + '…' : label;
                                 return {
-                                    text: `${label}: ${value} (${pct}%)`,
+                                    text: `${shortLabel} ${pct}%`,
                                     fillStyle: data.datasets[0].backgroundColor[i],
                                     hidden: false,
                                     index: i
