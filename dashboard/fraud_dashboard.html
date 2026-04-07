@@ -447,54 +447,6 @@
                 </div>
             </div>
 
-            <!-- Matriz Aliado vs SLA -->
-            <div class="chart-panel">
-                <div class="panel-header">
-                    <h3>⚠️ MATRIZ ALIADO × SLA</h3>
-                </div>
-                <div class="chart-body" style="height: 300px;">
-                    <canvas id="matrizSlaChart"></canvas>
-                </div>
-                <div class="chart-footer">
-                    <div class="chart-stat">
-                        <div class="stat-label">INCUMPLIMIENTOS</div>
-                        <div class="stat-value alert" id="totalIncumplimientos">--</div>
-                    </div>
-                    <div class="chart-stat">
-                        <div class="stat-label">CUMPLIMIENTO</div>
-                        <div class="stat-value positive" id="totalCumplimiento">--</div>
-                    </div>
-                    <div class="chart-stat">
-                        <div class="stat-label">TASA SLA</div>
-                        <div class="stat-value" id="tasaSla">--%</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Distribución de Reprogramaciones -->
-            <div class="chart-panel">
-                <div class="panel-header">
-                    <h3>🔄 REPROGRAMACIONES POR ALIADO</h3>
-                </div>
-                <div class="chart-body" style="height: 300px;">
-                    <canvas id="reprogramacionesChart"></canvas>
-                </div>
-                <div class="chart-footer">
-                    <div class="chart-stat">
-                        <div class="stat-label">CON REPROG.</div>
-                        <div class="stat-value warning" id="conReprog">--</div>
-                    </div>
-                    <div class="chart-stat">
-                        <div class="stat-label">SIN REPROG.</div>
-                        <div class="stat-value" id="sinReprog">--</div>
-                    </div>
-                    <div class="chart-stat">
-                        <div class="stat-label">TASA REPROG.</div>
-                        <div class="stat-value" id="tasaReprog">--%</div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Analisis por Tecnico (Top 10) - IZQUIERDA ARRIBA -->
             <div class="chart-panel" style="grid-column: 1 / 2; min-width: 0;">
                 <div class="panel-header">
@@ -505,13 +457,13 @@
                 </div>
             </div>
 
-            <!-- Canal vs Ciudad Matrix - DERECHA (2 FILAS) -->
+            <!-- Canal vs Ciudad Matrix -->
             <div class="chart-panel featured-chart" style="grid-column: 2 / -1; grid-row: span 2; min-width: 0;">
                 <div class="panel-header">
                     <h3>🔥 MATRIZ DE RIESGO: CANAL × CIUDAD</h3>
                 </div>
-                <div class="chart-body">
-                    <canvas id="matrixChart" style="height: 750px;"></canvas>
+                <div class="chart-body" style="height: 600px;">
+                    <canvas id="matrixChart"></canvas>
                 </div>
             </div>
 

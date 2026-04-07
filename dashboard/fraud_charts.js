@@ -4660,8 +4660,8 @@ function initMatrixChart(data) {
             borderColor: '#1a1a1a',
             borderWidth: 2,
             borderRadius: 4,
-            barPercentage: 0.9,
-            categoryPercentage: 0.95
+            barPercentage: 0.8,
+            categoryPercentage: 0.85
         };
     });
     
@@ -4802,10 +4802,11 @@ function initMatrixChart(data) {
                         autoSkip: false,
                         font: {
                             family: "'Roboto Mono', monospace",
-                            size: 10,
+                            size: 12,
                             weight: 'bold'
                         },
-                        color: FRAUD_COLORS.textColor
+                        color: FRAUD_COLORS.textColor,
+                        padding: 8
                     },
                     grid: {
                         color: 'rgba(255, 255, 255, 0.05)',
